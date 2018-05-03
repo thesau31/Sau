@@ -1,0 +1,8 @@
+﻿[
+	{ "LookupName": "Sets", "Key": "Core", "Value": "1" },
+	{ "LookupName": "Sets", "Key": "Genesis", "Value": "2" },
+	{ "LookupName": "Sets", "Key": "C&C", "Value": "3" },
+	{ "LookupName": "Sets", "Key": "Spin", "Value": "4" },
+	{ "LookupName": "Sets", "Key": "H&P", "Value": "5" },
+	{ "LookupName": "Sets", "Key": "Lunar", "Value": "6" }
+]

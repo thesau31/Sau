@@ -1,0 +1,12 @@
+﻿[
+	//{ "Set": "Core", "Number": "999", "Name": "Test Name", "Faction": "Anarch", "CardType": "Identity", "Keywords": ["Test"], "Relationships": [] },
+	{ "Set": "Core", "Number": "054", "Name": "Haas-Bioroid: Engineering the Future", "Faction": "HB", "CardType": "Identity", "Keywords": ["Megacorp"] },
+	{ "Set": "Core", "Number": "055", "Name": "Accelerated Beta Test", "Faction": "HB", "CardType": "Agenda", "Keywords": ["Research"] },
+	{ "Set": "Core", "Number": "056", "Name": "Adonis Campaign", "Faction": "HB", "CardType": "Asset", "Keywords": ["Advertisement	"] },
+	{ "Set": "Core", "Number": "057", "Name": "Aggressive Secretary", "Faction": "HB", "CardType": "Asset", "Keywords": ["Ambush"] },
+	{ "Set": "Core", "Number": "058", "Name": "Archived Memories", "Faction": "HB", "CardType": "Operation", "Keywords": [] },
+	{ "Set": "Core", "Number": "059", "Name": "Biotic Labor", "Faction": "HB", "CardType": "Operation", "Keywords": [] },
+	{ "Set": "Core", "Number": "060", "Name": "Shipment from MirrorMorph", "Faction": "HB", "CardType": "Operation", "Keywords": [] },
+	//{ "Set": "Core", "Number": "061", "Name": "Heimdall 1.0", "Faction": "HB", "CardType": "ICE", "Keywords": ["Barrier", "Bioroid", "AP"], "Cost": "8", "Strength": "6", "Effect": "The Runner can spend [Click] to break any subroutine on Heimdall 1.0.  »  Do 1 brain damage.  »  End the Run.  »  End the Run." },
+	//{ "Set": "Core", "Number": "062", "Name": "Ichi 1.0", "Faction": "HB", "CardType": "ICE", "Keywords": ["Sentry", "Bioroid", "Tracer", "Destroyer"] }
+]

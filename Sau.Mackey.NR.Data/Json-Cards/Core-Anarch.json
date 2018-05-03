@@ -1,0 +1,12 @@
+﻿[
+	//{ "Set": "Core", "Number": "999", "Name": "Test Name", "Faction": "Anarch", "CardType": "Identity", "Keywords": ["Test"], "Relationships": [] },
+	{ "Set": "Core", "Number": "001", "Name": "Noise: Hacker Extraordinaire", "Faction": "Anarch", "CardType": "Identity", "Keywords": ["G-Mod"] },
+	{ "Set": "Core", "Number": "002", "Name": "Deja Vu", "Faction": "Anarch", "CardType": "Event", "Keywords": [] },
+	{ "Set": "Core", "Number": "003", "Name": "Demolition Run", "Faction": "Anarch", "CardType": "Event", "Keywords": ["Run", "Sabotage"] },
+	{ "Set": "Core", "Number": "004", "Name": "Stimhack", "Faction": "Anarch", "CardType": "Event", "Keywords": ["Run"] },
+	{ "Set": "Core", "Number": "005", "Name": "Cyberfeeder", "Faction": "Anarch", "CardType": "Hardware", "Keywords": ["Chip"] },
+	{ "Set": "Core", "Number": "006", "Name": "♦ Grimoire", "Faction": "Anarch", "CardType": "Hardware", "Keywords": ["Console"] },
+	//{ "Set": "Core", "Number": "007", "Name": "Corroder", "Faction": "Anarch", "CardType": "Program", "Keywords": ["Icebreaker", "Fracter"], "Cost": "2", "Strength": "2", "Effect": "1€: Break barrier subroutine.  1€: +1 strength." },
+	{ "Set": "Core", "Number": "008", "Name": "Datasucker", "Faction": "Anarch", "CardType": "Program", "Keywords": ["Virus"] },
+	{ "Set": "Core", "Number": "009", "Name": "Djinn", "Faction": "Anarch", "CardType": "Program", "Keywords": ["Daemon"] }
+]
