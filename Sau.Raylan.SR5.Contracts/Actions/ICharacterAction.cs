@@ -1,4 +1,4 @@
-﻿namespace Sau.Raylan.SR.Contracts.Actions
+﻿namespace Sau.Raylan.SR5.Contracts.Actions
 {
     public interface ICharacterAction
     {

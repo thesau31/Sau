@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Sau.Raylan.SR.Contracts.Actions
+﻿namespace Sau.Raylan.SR5.Contracts.Actions
 {
     public class CombatAction : ICharacterAction
     {

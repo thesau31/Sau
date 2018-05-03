@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sau.Raylan.SR
+namespace Sau.Raylan.SR5
 {
     public class Initiative
     {
