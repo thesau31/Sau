@@ -40,9 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\CombatAction.cs" />
-    <Compile Include="Actions\ICharacterAction.cs" />
+    <Compile Include="Actions\Initiative\InterceptAction.cs" />
+    <Compile Include="Actions\Initiative\ParryAction.cs" />
+    <Compile Include="Actions\Initiative\FullDefenseAction.cs" />
+    <Compile Include="Actions\Initiative\HitTheDirtAction.cs" />
+    <Compile Include="Actions\Initiative\BlockAction.cs" />
+    <Compile Include="Actions\Initiative\CombatTurnAction.cs" />
+    <Compile Include="Actions\IAction.cs" />
+    <Compile Include="Actions\Initiative\DodgeAction.cs" />
+    <Compile Include="Actions\Initiative\IInitiativeAction.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="InitiativeCost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
