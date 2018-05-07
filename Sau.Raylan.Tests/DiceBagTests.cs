@@ -40,7 +40,7 @@ namespace Sau.Raylan.Tests
             }
 
             [TestMethod]
-            public void d6_Valid()
+            public void Valid()
             {
                 // arrange
                 const int seed = 1234;
@@ -55,7 +55,7 @@ namespace Sau.Raylan.Tests
             }
 
             [TestMethod]
-            public void d6_Valid_List()
+            public void Valid_List()
             {
                 // arrange
                 const int seed = 1234;
@@ -79,7 +79,7 @@ namespace Sau.Raylan.Tests
             }
 
             [TestMethod]
-            public void d6_ResultsAreWithinRange()
+            public void ResultsAreWithinRange()
             {
                 // arrange
                 var bag = new DiceBag();

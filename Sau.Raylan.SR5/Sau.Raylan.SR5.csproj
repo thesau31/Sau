@@ -40,7 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DicePool.cs" />
+    <Compile Include="DicePoolResults.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sau.Raylan\Sau.Raylan.csproj">
+      <Project>{51C537A6-6687-4B6D-97E1-FD14C2A7C27E}</Project>
+      <Name>Sau.Raylan</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
