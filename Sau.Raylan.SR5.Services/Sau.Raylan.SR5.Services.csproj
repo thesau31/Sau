@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{72FAF03E-44DA-4AB2-B42B-58E959C03245}</ProjectGuid>
+    <ProjectGuid>{1ADEE168-A712-427E-BD07-25B9CF8F162F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sau.Raylan.SR5.Contracts</RootNamespace>
-    <AssemblyName>Sau.Raylan.SR5.Contracts</AssemblyName>
+    <RootNamespace>Sau.Raylan.SR5.Services</RootNamespace>
+    <AssemblyName>Sau.Raylan.SR5.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,19 +40,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character.cs" />
+    <Compile Include="Actions\InitiativeActions\BlockAction.cs" />
+    <Compile Include="Actions\InitiativeActions\CombatTurnAction.cs" />
+    <Compile Include="Actions\InitiativeActions\DodgeAction.cs" />
+    <Compile Include="Actions\InitiativeActions\FullDefenseAction.cs" />
+    <Compile Include="Actions\InitiativeActions\HitTheDirtAction.cs" />
+    <Compile Include="Actions\InitiativeActions\IInitiativeAction.cs" />
+    <Compile Include="Actions\InitiativeActions\InitiativeCost.cs" />
+    <Compile Include="Actions\InitiativeActions\InterceptAction.cs" />
+    <Compile Include="Actions\InitiativeActions\ParryAction.cs" />
+    <Compile Include="InitiativePassSlot.cs" />
+    <Compile Include="Actions\IAction.cs" />
+    <Compile Include="InitiativePassService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sau.Raylan.SR5\Sau.Raylan.SR5.csproj">
-      <Project>{DCFBBEC0-D048-487C-B2FA-EEC740870AA0}</Project>
-      <Name>Sau.Raylan.SR5</Name>
+    <ProjectReference Include="..\Sau.Raylan.SR5.Contracts\Sau.Raylan.SR5.Contracts.csproj">
+      <Project>{72FAF03E-44DA-4AB2-B42B-58E959C03245}</Project>
+      <Name>Sau.Raylan.SR5.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sau.Raylan\Sau.Raylan.csproj">
       <Project>{51C537A6-6687-4B6D-97E1-FD14C2A7C27E}</Project>
       <Name>Sau.Raylan</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

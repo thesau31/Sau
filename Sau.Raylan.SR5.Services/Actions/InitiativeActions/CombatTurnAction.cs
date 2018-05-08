@@ -1,4 +1,4 @@
-﻿namespace Sau.Raylan.SR5.Contracts.Actions.Initiative
+﻿namespace Sau.Raylan.SR5.Services.Actions.Initiative
 {
     public class CombatTurnAction : IInitiativeAction
     {

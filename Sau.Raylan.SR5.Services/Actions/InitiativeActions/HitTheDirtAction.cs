@@ -1,11 +1,11 @@
-﻿namespace Sau.Raylan.SR5.Contracts.Actions.Initiative
+﻿namespace Sau.Raylan.SR5.Services.Actions.Initiative
 {
-    public class ParryAction : IInitiativeAction
+    public class HitTheDirtAction : IInitiativeAction
     {
         InitiativeCost _initiativeCost;
         public InitiativeCost InitiativeCost { get { return _initiativeCost; } }
 
-        public ParryAction()
+        public HitTheDirtAction()
         {
             _initiativeCost = new InitiativeCost() { Cost = 5, IsCostRequired = true };
         }
