@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sau.Raylan.SR5.Tests", "Sau
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sau.Raylan.Tests", "Sau.Raylan.Tests\Sau.Raylan.Tests.csproj", "{61BA27AF-59EC-468F-A727-2366399592E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sau.Raylan.Contracts.Tests", "Sau.Raylan.Contracts.Tests\Sau.Raylan.Contracts.Tests.csproj", "{51DD5FC0-B18C-44C9-AA65-AF27D6A9A087}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sau.Raylan.SR5.Contracts.Tests", "Sau.Raylan.SR5.Contracts.Tests\Sau.Raylan.SR5.Contracts.Tests.csproj", "{51DD5FC0-B18C-44C9-AA65-AF27D6A9A087}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
