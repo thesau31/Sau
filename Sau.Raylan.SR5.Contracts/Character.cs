@@ -5,7 +5,34 @@ namespace Sau.Raylan.SR5.Contracts
 {
     public class Character
     {
+        private DiceBag _dice;
+
+        public int Body { get; set; }
+        public int Agility { get; set; }
+        public int Reaction { get; set; }
+        public int Strength { get; set; }
+        public int Will { get; set; }
+        public int Logic { get; set; }
+        public int Intuition { get; set; }
+        public int Charisma { get; set; }
+
+        public DicePool InitiativeDicePool { get { return new DicePool(_dice, 1); } }
         public int CurrentInitiative { get; set; }
+
+        #region c'tor
+        public Character(DiceBag dice)
+        {
+            if (dice == null)
+                throw new ArgumentNullException();
+
+            _dice = dice;
+        }
+        #endregion
+
+        public void RollInitiative()
+        {
+            CurrentInitiative = Reaction + Intuition + InitiativeDicePool.Roll().Total;
+        }
 
         public void PerformAction(IInitiativeAction action)
         {

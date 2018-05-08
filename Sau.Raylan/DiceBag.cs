@@ -20,12 +20,12 @@ namespace Sau.Raylan
         #endregion
 
         #region d6
-        public int d6()
+        public virtual int d6()
         {
             return roll(6);
         }
 
-        public IEnumerable<int> d6(int times)
+        public virtual IEnumerable<int> d6(int times)
         {
             for (int i = 0; i < times; i++)
                 yield return roll(6);
