@@ -15,11 +15,11 @@ namespace Sau.Raylan.Tests
             public void GivenNegativeTimes_ThenEmptyResults()
             {
                 // arrange
-                var bag = new DiceBag();
+                var actual = new DiceBag();
                 var expected = 0;
 
                 // act
-                var results = bag.d6(-1);
+                var results = actual.d6(-1);
 
                 // assert
                 Assert.AreEqual(expected, results.Count());
@@ -29,11 +29,11 @@ namespace Sau.Raylan.Tests
             public void GivenZeroTimes_ThenEmptyResults()
             {
                 // arrange
-                var bag = new DiceBag();
+                var actual = new DiceBag();
                 var expected = 0;
 
                 // act
-                var results = bag.d6(0);
+                var results = actual.d6(0);
 
                 // assert
                 Assert.AreEqual(expected, results.Count());
@@ -44,11 +44,11 @@ namespace Sau.Raylan.Tests
             {
                 // arrange
                 const int seed = 1234;
-                var bag = new DiceBag(seed);
+                var actual = new DiceBag(seed);
                 var expected = new Random(seed).Next(1, 6);
 
                 // act
-                var results = bag.d6();
+                var results = actual.d6();
 
                 // assert
                 Assert.AreEqual(expected, results);
@@ -59,7 +59,7 @@ namespace Sau.Raylan.Tests
             {
                 // arrange
                 const int seed = 1234;
-                var bag = new DiceBag(seed);
+                var actual = new DiceBag(seed);
                 var random = new Random(seed);
                 var expected = new List<int>
             {
@@ -70,7 +70,7 @@ namespace Sau.Raylan.Tests
             };
 
                 // act
-                var results = bag.d6(4).ToList();
+                var results = actual.d6(4).ToList();
 
                 // assert
                 Assert.AreEqual(expected.Count, results.Count);
@@ -82,10 +82,10 @@ namespace Sau.Raylan.Tests
             public void ResultsAreWithinRange()
             {
                 // arrange
-                var bag = new DiceBag();
+                var actual = new DiceBag();
 
                 // act 
-                var results = bag.d6(10000);
+                var results = actual.d6(10000);
 
                 // assert
                 Assert.AreEqual(0, results.Count(x => x < 1));

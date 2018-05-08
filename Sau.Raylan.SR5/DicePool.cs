@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace Sau.Raylan.SR5
 {
@@ -23,7 +22,7 @@ namespace Sau.Raylan.SR5
 
         public DicePoolResults Roll()
         {   
-            return new DicePoolResults(_diceBag.d6(_numberOfDice).ToList());
+            return new DicePoolResults(_diceBag.d6(_numberOfDice));
         }
     }
 }
