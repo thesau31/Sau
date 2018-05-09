@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sau.Raylan.SR5.Contracts.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sau.Raylan.SR5.Services", "Sau.Raylan.SR5.Services\Sau.Raylan.SR5.Services.csproj", "{1ADEE168-A712-427E-BD07-25B9CF8F162F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sau.Raylan.SR5.Services.Tests", "Sau.Raylan.SR5.Services.Tests\Sau.Raylan.SR5.Services.Tests.csproj", "{5760611D-DE22-4025-B2C6-88807F91AC50}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{1ADEE168-A712-427E-BD07-25B9CF8F162F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ADEE168-A712-427E-BD07-25B9CF8F162F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ADEE168-A712-427E-BD07-25B9CF8F162F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5760611D-DE22-4025-B2C6-88807F91AC50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5760611D-DE22-4025-B2C6-88807F91AC50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5760611D-DE22-4025-B2C6-88807F91AC50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5760611D-DE22-4025-B2C6-88807F91AC50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,5 +67,6 @@ Global
 		{4FC7A88F-2C74-42CE-BDA8-19447361FB67} = {BD32B099-411E-45A1-9EF0-3C94961F14D2}
 		{61BA27AF-59EC-468F-A727-2366399592E1} = {BD32B099-411E-45A1-9EF0-3C94961F14D2}
 		{51DD5FC0-B18C-44C9-AA65-AF27D6A9A087} = {BD32B099-411E-45A1-9EF0-3C94961F14D2}
+		{5760611D-DE22-4025-B2C6-88807F91AC50} = {BD32B099-411E-45A1-9EF0-3C94961F14D2}
 	EndGlobalSection
 EndGlobal
