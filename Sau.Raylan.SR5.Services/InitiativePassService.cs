@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sau.Raylan.SR5.Services
@@ -10,11 +11,13 @@ namespace Sau.Raylan.SR5.Services
         #region c'tor
         public InitiativePassService(IEnumerable<InitiativePassSlot> initiativeOrder)
         {
+            if (initiativeOrder == null) throw new ArgumentNullException();
+
             InitiativeOrder = initiativeOrder.ToList();
             InitiativeOrder.Sort();
-        } 
+        }
         #endregion
 
-        
+
     }
 }
