@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sau.Raylan.SR5.Services.Actions.Initiative;
 using Moq;
+using Sau.Raylan.SR5.Services.Actions;
+using System.Collections.Generic;
 
 namespace Sau.Raylan.SR5.Services.Tests
 {
@@ -30,11 +32,11 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenCurrentInitiativeIsZero_ThrowInvalidOperationException()
             {
                 // arrange
-                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var mockAction = new Mock<IInitiativeAction>(MockBehavior.Strict);
                 var actual = new InitiativePassSlot() { CurrentInitiative = 0 };
 
                 // act
-                actual.PerformAction(action.Object);
+                actual.PerformAction(mockAction.Object);
 
                 // assert
                 Assert.Fail("InvalidOperationException should have been thrown.");
@@ -45,11 +47,11 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenCurrentInitiativeIsNegative_ThrowInvalidOperationException()
             {
                 // arrange
-                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var mockAction = new Mock<IInitiativeAction>(MockBehavior.Strict);
                 var actual = new InitiativePassSlot() { CurrentInitiative = -1 };
 
                 // act
-                actual.PerformAction(action.Object);
+                actual.PerformAction(mockAction.Object);
 
                 // assert
                 Assert.Fail("InvalidOperationException should have been thrown.");
@@ -60,15 +62,15 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenInitiativeCostGreaterThanCurrentInitiativeAndCostIsRequired_ThrowInvalidOperationException()
             {
                 // arrange
-                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var mockAction = new Mock<IInitiativeAction>(MockBehavior.Strict);
                 var cost = new InitiativeCost() { Cost = 2, IsCostRequired = true };
                 var actual = new InitiativePassSlot() { CurrentInitiative = 1 };
 
-                action.Setup(x => x.InitiativeCost)
+                mockAction.Setup(x => x.InitiativeCost)
                     .Returns(cost);
 
                 // act
-                actual.PerformAction(action.Object);
+                actual.PerformAction(mockAction.Object);
 
                 // assert
                 Assert.Fail("InvalidOperationException should have been thrown.");
@@ -78,40 +80,44 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenInitativeCostGreaterThanCurrentInitiativeAndCostIsNotRequired_ThenCurrentInitiativeSetToZeroAndActionRun()
             {
                 // arrange
-                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var mockAction = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var actionResult = new ActionResult("", new DicePoolResults(new List<int>()));
                 var cost = new InitiativeCost() { Cost = 2, IsCostRequired = false };
                 var actual = new InitiativePassSlot() { CurrentInitiative = 1 };
 
-                action.Setup(x => x.InitiativeCost)
+                mockAction.Setup(x => x.InitiativeCost)
                     .Returns(cost);
-                action.Setup(x => x.Do());
+                mockAction.Setup(x => x.Do())
+                    .Returns(actionResult);
 
                 // act
-                actual.PerformAction(action.Object);
+                actual.PerformAction(mockAction.Object);
 
                 // assert
                 Assert.AreEqual(0, actual.CurrentInitiative);
-                action.Verify(x => x.Do(), Times.Once);
+                mockAction.Verify(x => x.Do(), Times.Once);
             }
 
             [TestMethod]
             public void GivenInitativeCostLessThanCurrentInitiative_ThenCurrentInitiativeDecrementedAndActionRun()
             {
                 // arrange
-                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var mockAction = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var actionResult = new ActionResult("", new DicePoolResults(new List<int>()));
                 var cost = new InitiativeCost() { Cost = 5, IsCostRequired = false };
                 var actual = new InitiativePassSlot() { CurrentInitiative = 7 };
 
-                action.Setup(x => x.InitiativeCost)
+                mockAction.Setup(x => x.InitiativeCost)
                     .Returns(cost);
-                action.Setup(x => x.Do());
+                mockAction.Setup(x => x.Do())
+                    .Returns(actionResult);
 
                 // act
-                actual.PerformAction(action.Object);
+                actual.PerformAction(mockAction.Object);
 
                 // assert
                 Assert.AreEqual(2, actual.CurrentInitiative);
-                action.Verify(x => x.Do(), Times.Once);
+                mockAction.Verify(x => x.Do(), Times.Once);
             }
         }
 

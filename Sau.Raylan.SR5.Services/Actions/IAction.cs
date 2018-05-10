@@ -2,6 +2,6 @@
 {
     public interface IAction
     {
-        void Do();
+        ActionResult Do();
     }
 }

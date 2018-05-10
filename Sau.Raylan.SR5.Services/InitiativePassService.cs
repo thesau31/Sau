@@ -18,6 +18,14 @@ namespace Sau.Raylan.SR5.Services
         }
         #endregion
 
+        public InitiativePassSlot Next()
+        {
+            InitiativeOrder.Sort();
 
+            if (InitiativeOrder[0].HasActed || InitiativeOrder[0].CurrentInitiative == 0)
+                return null;
+
+            return InitiativeOrder[0];
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
             _initiativeCost = new InitiativeCost() { Cost = 10, IsCostRequired = false };
         }
 
-        public void Do()
+        public ActionResult Do()
         {
             throw new NotImplementedException();
         }

@@ -40,5 +40,67 @@ namespace Sau.Raylan.SR5.Services.Tests
                 Assert.AreSame(four, actual.InitiativeOrder[3]);
             }
         }
+
+        [TestClass]
+        public class Next
+        {
+            [TestMethod]
+            public void GivenEveryoneActed_ThenReturnNull()
+            {
+                // arrange
+                var one = new InitiativePassSlot() { CurrentInitiative = 5, HasActed = true };
+                var two = new InitiativePassSlot() { CurrentInitiative = 15, HasActed = true };
+                var three = new InitiativePassSlot() { CurrentInitiative = 17, HasActed = true };
+                var four = new InitiativePassSlot() { CurrentInitiative = 10, HasActed = true };
+                var five = new InitiativePassSlot() { CurrentInitiative = 8, HasActed = true };
+                var initiativeOrder = new List<InitiativePassSlot>() { one, two, three, four, five };
+                var actual = new InitiativePassService(initiativeOrder);
+
+                // act
+                var results = actual.Next();
+
+                // assert
+                Assert.IsNull(results);
+            }
+
+            [TestMethod]
+            public void GivenNoOneWhoHasNotActedAlsoHasPositiveInitiative_ThenReturnNull()
+            {
+                // arrange
+                var one = new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false };
+                var two = new InitiativePassSlot() { CurrentInitiative = 15, HasActed = true };
+                var three = new InitiativePassSlot() { CurrentInitiative = 17, HasActed = true };
+                var four = new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false };
+                var five = new InitiativePassSlot() { CurrentInitiative = 8, HasActed = true };
+                var initiativeOrder = new List<InitiativePassSlot>() { one, two, three, four, five };
+                var actual = new InitiativePassService(initiativeOrder);
+
+                // act
+                var results = actual.Next();
+
+                // assert
+                Assert.IsNull(results);
+            }
+
+            [TestMethod]
+            public void GivenThereIsSomeoneLeftToAct_ThenReturnTheNextCharacter()
+            {
+                // arrange
+                var one = new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false };
+                var two = new InitiativePassSlot() { CurrentInitiative = 15, HasActed = false };
+                var three = new InitiativePassSlot() { CurrentInitiative = 17, HasActed = false };
+                var four = new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false };
+                var five = new InitiativePassSlot() { CurrentInitiative = 8, HasActed = false };
+                var initiativeOrder = new List<InitiativePassSlot>() { one, two, three, four, five };
+                var actual = new InitiativePassService(initiativeOrder);
+
+                // act
+                var results = actual.Next();
+
+                // assert
+                Assert.IsNotNull(results);
+                Assert.AreSame(three, results);
+            }
+        }
     }
 }

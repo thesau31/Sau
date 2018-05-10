@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\ActionResult.cs" />
     <Compile Include="Actions\InitiativeActions\BlockAction.cs" />
     <Compile Include="Actions\InitiativeActions\CombatTurnAction.cs" />
     <Compile Include="Actions\InitiativeActions\DodgeAction.cs" />
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\Sau.Raylan.SR5.Contracts\Sau.Raylan.SR5.Contracts.csproj">
       <Project>{72FAF03E-44DA-4AB2-B42B-58E959C03245}</Project>
       <Name>Sau.Raylan.SR5.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sau.Raylan.SR5\Sau.Raylan.SR5.csproj">
+      <Project>{DCFBBEC0-D048-487C-B2FA-EEC740870AA0}</Project>
+      <Name>Sau.Raylan.SR5</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sau.Raylan\Sau.Raylan.csproj">
       <Project>{51C537A6-6687-4B6D-97E1-FD14C2A7C27E}</Project>

@@ -2,23 +2,15 @@
 {
     public class Character
     {
-        public int Body { get; set; }
-        public int Agility { get; set; }
+        //public int Body { get; set; }
+        //public int Agility { get; set; }
         public int Reaction { get; set; }
-        public int Strength { get; set; }
-        public int Will { get; set; }
-        public int Logic { get; set; }
+        //public int Strength { get; set; }
+        //public int Will { get; set; }
+        //public int Logic { get; set; }
         public int Intuition { get; set; }
-        public int Charisma { get; set; }
+        //public int Charisma { get; set; }
 
         public int InitiativeDicePool { get { return 1; } }
-        public int CurrentInitiative { get; set; }
-
-        //public void RollInitiative()
-        //{
-        //    CurrentInitiative = Reaction + Intuition + InitiativeDicePool.Roll().Total;
-        //}
-
-        
     }
 }
