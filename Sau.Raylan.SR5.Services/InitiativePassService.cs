@@ -11,7 +11,7 @@ namespace Sau.Raylan.SR5.Services
         #region c'tor
         public InitiativePassService(IEnumerable<InitiativePassSlot> initiativeOrder)
         {
-            if (initiativeOrder == null) throw new ArgumentNullException();
+            if (initiativeOrder == null) throw new ArgumentNullException("initiativeOrder");
 
             InitiativeOrder = initiativeOrder.ToList();
             InitiativeOrder.Sort();

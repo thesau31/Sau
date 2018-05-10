@@ -1,12 +1,120 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sau.Raylan.SR5.Services;
+using Sau.Raylan.SR5.Services.Actions.Initiative;
+using Moq;
 
 namespace Sau.Raylan.SR5.Services.Tests
 {
     [TestClass]
     public class InitiativePassSlotTests
     {
+        [TestClass]
+        public class PerformAction
+        {
+            [TestMethod]
+            [ExpectedException(typeof(ArgumentNullException))]
+            public void GivenActionIsNull_ThrowArgumentNullException()
+            {
+                // arrange
+                var actual = new InitiativePassSlot();
+
+                // act
+                actual.PerformAction(null);
+
+                // assert
+                Assert.Fail("ArgumentNullException should have been thrown.");
+            }
+
+            [TestMethod]
+            [ExpectedException(typeof(InvalidOperationException))]
+            public void GivenCurrentInitiativeIsZero_ThrowInvalidOperationException()
+            {
+                // arrange
+                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var actual = new InitiativePassSlot() { CurrentInitiative = 0 };
+
+                // act
+                actual.PerformAction(action.Object);
+
+                // assert
+                Assert.Fail("InvalidOperationException should have been thrown.");
+            }
+
+            [TestMethod]
+            [ExpectedException(typeof(InvalidOperationException))]
+            public void GivenCurrentInitiativeIsNegative_ThrowInvalidOperationException()
+            {
+                // arrange
+                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var actual = new InitiativePassSlot() { CurrentInitiative = -1 };
+
+                // act
+                actual.PerformAction(action.Object);
+
+                // assert
+                Assert.Fail("InvalidOperationException should have been thrown.");
+            }
+
+            [TestMethod]
+            [ExpectedException(typeof(InvalidOperationException))]
+            public void GivenInitiativeCostGreaterThanCurrentInitiativeAndCostIsRequired_ThrowInvalidOperationException()
+            {
+                // arrange
+                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var cost = new InitiativeCost() { Cost = 2, IsCostRequired = true };
+                var actual = new InitiativePassSlot() { CurrentInitiative = 1 };
+
+                action.Setup(x => x.InitiativeCost)
+                    .Returns(cost);
+
+                // act
+                actual.PerformAction(action.Object);
+
+                // assert
+                Assert.Fail("InvalidOperationException should have been thrown.");
+            }
+
+            [TestMethod]
+            public void GivenInitativeCostGreaterThanCurrentInitiativeAndCostIsNotRequired_ThenCurrentInitiativeSetToZeroAndActionRun()
+            {
+                // arrange
+                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var cost = new InitiativeCost() { Cost = 2, IsCostRequired = false };
+                var actual = new InitiativePassSlot() { CurrentInitiative = 1 };
+
+                action.Setup(x => x.InitiativeCost)
+                    .Returns(cost);
+                action.Setup(x => x.Do());
+
+                // act
+                actual.PerformAction(action.Object);
+
+                // assert
+                Assert.AreEqual(0, actual.CurrentInitiative);
+                action.Verify(x => x.Do(), Times.Once);
+            }
+
+            [TestMethod]
+            public void GivenInitativeCostLessThanCurrentInitiative_ThenCurrentInitiativeDecrementedAndActionRun()
+            {
+                // arrange
+                var action = new Mock<IInitiativeAction>(MockBehavior.Strict);
+                var cost = new InitiativeCost() { Cost = 5, IsCostRequired = false };
+                var actual = new InitiativePassSlot() { CurrentInitiative = 7 };
+
+                action.Setup(x => x.InitiativeCost)
+                    .Returns(cost);
+                action.Setup(x => x.Do());
+
+                // act
+                actual.PerformAction(action.Object);
+
+                // assert
+                Assert.AreEqual(2, actual.CurrentInitiative);
+                action.Verify(x => x.Do(), Times.Once);
+            }
+        }
+
         [TestClass]
         public class CompareTo
         {

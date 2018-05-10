@@ -1,4 +1,6 @@
-﻿namespace Sau.Raylan.SR5.Services.Actions.Initiative
+﻿using System;
+
+namespace Sau.Raylan.SR5.Services.Actions.Initiative
 {
     public class CombatTurnAction : IInitiativeAction
     {
@@ -8,6 +10,11 @@
         public CombatTurnAction()
         {
             _initiativeCost = new InitiativeCost() { Cost = 10, IsCostRequired = false };
+        }
+
+        public void Do()
+        {
+            throw new NotImplementedException();
         }
     }
 }

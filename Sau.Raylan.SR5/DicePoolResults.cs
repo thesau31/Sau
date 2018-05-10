@@ -14,7 +14,7 @@ namespace Sau.Raylan.SR5
 
         public DicePoolResults(IEnumerable<int> rollResults)
         {
-            if (rollResults == null) throw new ArgumentNullException();
+            if (rollResults == null) throw new ArgumentNullException("rollResults");
 
             RollResults = rollResults.ToList();
         }
