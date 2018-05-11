@@ -1,4 +1,4 @@
-﻿namespace Sau.Raylan.SR5.Services
+﻿namespace Sau.Raylan.SR5.Services.Actions.Initiative
 {
     public class InitiativeCost
     {

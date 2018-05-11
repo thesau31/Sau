@@ -41,15 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\ActionResult.cs" />
-    <Compile Include="Actions\InitiativeActions\BlockAction.cs" />
-    <Compile Include="Actions\InitiativeActions\CombatTurnAction.cs" />
-    <Compile Include="Actions\InitiativeActions\DodgeAction.cs" />
-    <Compile Include="Actions\InitiativeActions\FullDefenseAction.cs" />
-    <Compile Include="Actions\InitiativeActions\HitTheDirtAction.cs" />
-    <Compile Include="Actions\InitiativeActions\IInitiativeAction.cs" />
-    <Compile Include="Actions\InitiativeActions\InitiativeCost.cs" />
-    <Compile Include="Actions\InitiativeActions\InterceptAction.cs" />
-    <Compile Include="Actions\InitiativeActions\ParryAction.cs" />
+    <Compile Include="Actions\Initiative\IInitiativeAction.cs" />
+    <Compile Include="Actions\Initiative\InitiativeAction.cs" />
+    <Compile Include="Actions\Initiative\InitiativeCost.cs" />
     <Compile Include="InitiativePassSlot.cs" />
     <Compile Include="Actions\IAction.cs" />
     <Compile Include="InitiativePassService.cs" />

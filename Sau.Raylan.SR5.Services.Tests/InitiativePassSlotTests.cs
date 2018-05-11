@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sau.Raylan.SR5.Services.Actions.Initiative;
 using Moq;
 using Sau.Raylan.SR5.Services.Actions;
 using System.Collections.Generic;
+using Sau.Raylan.SR5.Services.Actions.Initiative;
 
 namespace Sau.Raylan.SR5.Services.Tests
 {
