@@ -4,11 +4,11 @@ namespace Sau.Raylan.SR5
 {
     public class DicePool
     {
-        DiceBag _diceBag;
+        IDiceBag _diceBag;
         int _numberOfDice;
 
         #region c'tor
-        public DicePool(DiceBag diceBag, int numberOfDice)
+        public DicePool(IDiceBag diceBag, int numberOfDice)
         {
             if (diceBag == null)
                 throw new ArgumentNullException("diceBag");

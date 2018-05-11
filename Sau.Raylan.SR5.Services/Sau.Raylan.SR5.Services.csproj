@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\ActionResult.cs" />
+    <Compile Include="Actions\Initiative\BlockAction.cs" />
     <Compile Include="Actions\Initiative\IInitiativeAction.cs" />
     <Compile Include="Actions\Initiative\InitiativeAction.cs" />
     <Compile Include="Actions\Initiative\InitiativeCost.cs" />

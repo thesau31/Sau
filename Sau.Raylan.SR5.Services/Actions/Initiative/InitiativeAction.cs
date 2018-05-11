@@ -1,4 +1,5 @@
 ﻿using System;
+using Sau.Raylan.SR5.Contracts;
 
 namespace Sau.Raylan.SR5.Services.Actions.Initiative
 {
@@ -6,7 +7,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
     {
         public InitiativeCost InitiativeCost { get; }
 
-        public ActionResult Do()
+        public ActionResult Do(Character source, IDiceBag bag)
         {
             throw new NotImplementedException();
         }

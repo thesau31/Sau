@@ -23,7 +23,7 @@ namespace Sau.Raylan.SR5.Services
             else
                 CurrentInitiative = 0;
 
-            action.Do();
+            //action.Do();
         }
 
         #region IComparable<T>
