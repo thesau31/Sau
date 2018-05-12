@@ -27,5 +27,10 @@ namespace Sau.Raylan.SR5.Services
 
             return InitiativeOrder[0];
         }
+
+        public void Reset()
+        {
+
+        }
     }
 }
