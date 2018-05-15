@@ -1,12 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sau.Raylan.SR5;
-using System.Linq;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sau.Raylan.SR5.Tests
 {
-    [TestClass]
+    [TestClass, ExcludeFromCodeCoverage]
     public class DicePoolTests
     {
         [TestClass]

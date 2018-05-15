@@ -10,9 +10,11 @@ namespace Sau.Raylan.SR5.Services
         public bool HasActed { get; set; }
         public Character Participant { get; set; }
 
-        public void PerformAction(IInitiativeAction action)
+        public void PerformAction(IInitiativeAction action, IDiceBag diceBag)
         {
             if (action == null) throw new ArgumentNullException("action");
+            if (diceBag == null) throw new ArgumentNullException("bag");
+
             if (CurrentInitiative <= 0)
                 throw new InvalidOperationException("You may not perform an action with 0 initiative.");
             if (action.InitiativeCost.Cost > CurrentInitiative && action.InitiativeCost.IsCostRequired)
@@ -23,7 +25,7 @@ namespace Sau.Raylan.SR5.Services
             else
                 CurrentInitiative = 0;
 
-            //action.Do();
+            action.Do(Participant, diceBag);
         }
 
         #region IComparable<T>

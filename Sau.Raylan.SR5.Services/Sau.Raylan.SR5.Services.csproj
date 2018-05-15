@@ -41,10 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\ActionResult.cs" />
-    <Compile Include="Actions\Initiative\BlockAction.cs" />
     <Compile Include="Actions\Initiative\IInitiativeAction.cs" />
     <Compile Include="Actions\Initiative\InitiativeAction.cs" />
+    <Compile Include="Actions\Initiative\InitiativeActionInput.cs" />
     <Compile Include="Actions\Initiative\InitiativeCost.cs" />
+    <Compile Include="Actions\Initiative\InitiativeActionFactory.cs" />
     <Compile Include="InitiativePassSlot.cs" />
     <Compile Include="Actions\IAction.cs" />
     <Compile Include="InitiativePassService.cs" />

@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using Sau.Raylan.SR5.Services.Actions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sau.Raylan.SR5.Services.Tests.Actions
 {
-    [TestClass]
+    [TestClass, ExcludeFromCodeCoverage]
     public class ActionResultTests
     {
         [TestClass]

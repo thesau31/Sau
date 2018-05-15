@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sau.Raylan.SR5.Services.Tests
 {
-    [TestClass]
+    [TestClass, ExcludeFromCodeCoverage]
     public class InitiativePassServiceTests
     {
         [TestClass]
