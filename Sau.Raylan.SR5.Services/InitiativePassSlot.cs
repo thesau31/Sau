@@ -25,7 +25,7 @@ namespace Sau.Raylan.SR5.Services
             else
                 CurrentInitiative = 0;
 
-            action.Do(Participant, diceBag);
+            action.Do(diceBag, Participant);
         }
 
         #region IComparable<T>

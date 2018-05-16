@@ -110,7 +110,7 @@ namespace Sau.Raylan.SR5.Services.Tests
 
                 mockAction.Setup(x => x.InitiativeCost)
                     .Returns(cost);
-                mockAction.Setup(x => x.Do(character, bag))
+                mockAction.Setup(x => x.Do(bag, character))
                     .Returns(actionResult);
 
                 // act
@@ -118,7 +118,7 @@ namespace Sau.Raylan.SR5.Services.Tests
 
                 // assert
                 Assert.AreEqual(0, actual.CurrentInitiative);
-                mockAction.Verify(x => x.Do(character, bag), Times.Once);
+                mockAction.Verify(x => x.Do(bag, character), Times.Once);
             }
 
             [TestMethod]
@@ -138,7 +138,7 @@ namespace Sau.Raylan.SR5.Services.Tests
 
                 mockAction.Setup(x => x.InitiativeCost)
                     .Returns(cost);
-                mockAction.Setup(x => x.Do(character, bag))
+                mockAction.Setup(x => x.Do(bag, character))
                     .Returns(actionResult);
 
                 // act
@@ -146,7 +146,7 @@ namespace Sau.Raylan.SR5.Services.Tests
 
                 // assert
                 Assert.AreEqual(2, actual.CurrentInitiative);
-                mockAction.Verify(x => x.Do(character, bag), Times.Once);
+                mockAction.Verify(x => x.Do(bag, character), Times.Once);
             }
         }
 

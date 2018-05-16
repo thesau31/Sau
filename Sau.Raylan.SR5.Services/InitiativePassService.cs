@@ -30,7 +30,8 @@ namespace Sau.Raylan.SR5.Services
 
         public void Reset()
         {
-
+            // todo: reset
+            throw new NotImplementedException();
         }
     }
 }

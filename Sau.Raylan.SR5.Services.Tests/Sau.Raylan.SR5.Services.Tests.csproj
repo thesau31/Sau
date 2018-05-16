@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Actions\ActionResultTests.cs" />
     <Compile Include="Actions\Initiative\InitiativeActionFactoryTests.cs" />
+    <Compile Include="Actions\Initiative\InitiativeActionTests.cs" />
     <Compile Include="InitiativePassSlotTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InitiativePassServiceTests.cs" />

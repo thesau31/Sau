@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sau.Raylan.SR5.Contracts;
+using System;
 using System.Collections.Generic;
 
 namespace Sau.Raylan.SR5.Services.Actions.Initiative
@@ -7,7 +8,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
     {
         private Dictionary<InitiativeActionType, InitiativeActionInput> Inputs = new Dictionary<InitiativeActionType, InitiativeActionInput>()
         {
-            { InitiativeActionType.Block, new InitiativeActionInput() { Name = "Block", Cost = 5, IsCostRequired = true} }
+            { InitiativeActionType.Block, new InitiativeActionInput() { Name = "Block", Cost = 5, IsCostRequired = true, AttributesUsed = new List<AttributeType>() { AttributeType.Reaction, AttributeType.Intuition } } }
         };
 
         public InitiativeAction Create(InitiativeActionType actionType)
@@ -18,7 +19,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
             throw new NotImplementedException();
         }
     }
-    
+
     public enum InitiativeActionType
     {
         None,

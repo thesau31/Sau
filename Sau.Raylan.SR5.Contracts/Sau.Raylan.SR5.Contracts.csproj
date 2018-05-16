@@ -42,6 +42,9 @@
   <ItemGroup>
     <Compile Include="AttributePool.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="Interfaces\IAttributePool.cs" />
+    <Compile Include="Interfaces\ICharacter.cs" />
+    <Compile Include="Interfaces\IHasAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
