@@ -10,5 +10,6 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
         public bool IsCostRequired { get; set; }
         public List<AttributeType> AttributesUsed { get; set; }
         public List<SkillType> SkillsUsed { get; set; }
+        public LimitType Limit { get; set; }
     }
 }

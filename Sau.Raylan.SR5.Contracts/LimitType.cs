@@ -2,6 +2,7 @@
 {
     public enum LimitType
     {
+        None,
         Physical,
         Mental,
         Social

@@ -17,12 +17,17 @@ namespace Sau.Raylan.SR5
 
             _diceBag = diceBag;
             _numberOfDice = numberOfDice;
-        } 
+        }
         #endregion
 
         public DicePoolResults Roll()
-        {   
-            return new DicePoolResults(_diceBag.d6(_numberOfDice));
+        {
+            return Roll(-1);
+        }
+
+        public DicePoolResults Roll(int limitToImpose)
+        {
+            return new DicePoolResults(_diceBag.d6(_numberOfDice), -1);
         }
     }
 }

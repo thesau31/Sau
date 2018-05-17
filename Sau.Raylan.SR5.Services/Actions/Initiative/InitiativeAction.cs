@@ -14,6 +14,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
         public InitiativeCost InitiativeCost { get; private set; }
         public List<AttributeType> AttributesUsed { get; private set; }
         public List<SkillType> SkillsUsed { get; private set; }
+        public LimitType Limit { get; private set; }
 
         #region c'tor
         private InitiativeAction()
@@ -31,6 +32,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
                 AttributesUsed.AddRange(input.AttributesUsed);
             if (input.SkillsUsed != null)
                 SkillsUsed.AddRange(input.SkillsUsed);
+            Limit = input.Limit;
         }
         #endregion
 
@@ -44,7 +46,9 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
             SkillsUsed.ForEach(x => times += source.Skills[x]);
 
             var pool = new DicePool(bag, times);
-            var results = pool.Roll(); // todo: limits
+            var results = (Limit == LimitType.None)
+                ? pool.Roll()
+                : pool.Roll(source.Attributes.LimitValue(Limit));
             var rollNotation = buildNotation(source);
 
             return new ActionResult(rollNotation, results);

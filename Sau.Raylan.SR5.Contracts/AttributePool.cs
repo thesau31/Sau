@@ -61,11 +61,15 @@ namespace Sau.Raylan.SR5.Contracts
 
         public int LimitValue(LimitType type)
         {
+            if (!_limits.ContainsKey(type))
+                throw new IndexOutOfRangeException();
             return _limits[type].Value();
         }
 
         public string LimitDisplay(LimitType type)
         {
+            if (!_limits.ContainsKey(type))
+                throw new IndexOutOfRangeException();
             return _limits[type].Display;
         }
 
