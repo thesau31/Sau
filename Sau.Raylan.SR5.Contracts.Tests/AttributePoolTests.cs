@@ -20,7 +20,7 @@ namespace Sau.Raylan.SR5.Contracts.Tests
                 Assert.IsNotNull(results[AttributeType.Agility]);
                 Assert.IsNotNull(results[AttributeType.Reaction]);
                 Assert.IsNotNull(results[AttributeType.Strength]);
-                Assert.IsNotNull(results[AttributeType.Will]);
+                Assert.IsNotNull(results[AttributeType.Willpower]);
                 Assert.IsNotNull(results[AttributeType.Logic]);
                 Assert.IsNotNull(results[AttributeType.Intuition]);
                 Assert.IsNotNull(results[AttributeType.Charisma]);
@@ -65,5 +65,7 @@ namespace Sau.Raylan.SR5.Contracts.Tests
                 Assert.AreEqual("BOD (12)", results);
             }
         }
+
+        // todo limit tests
     }
 }

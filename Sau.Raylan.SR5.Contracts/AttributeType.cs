@@ -6,7 +6,7 @@
         Agility,
         Reaction,
         Strength,
-        Will,
+        Willpower,
         Logic,
         Intuition,
         Charisma,
