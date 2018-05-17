@@ -7,7 +7,7 @@ namespace Sau.Raylan.SR5.Contracts
     {
         private Dictionary<SkillType, Skill> _skills = new Dictionary<SkillType, Skill>()
         {
-            { SkillType.UnarmedCombat, new Skill() }
+            { SkillType.UnarmedCombat, new Skill() { Name = "Unarmed Combat" } },
         };
 
         public int this[SkillType type]
@@ -30,7 +30,8 @@ namespace Sau.Raylan.SR5.Contracts
         private class Skill
         {
             public int Value { get; set; }
-            public string Display { get; set; }
+            public string Name { get; set; }
+            public string Display { get { return string.Format("{0} ({1})", Name, Value); } }
             // todo: associated attribute
         }
     }

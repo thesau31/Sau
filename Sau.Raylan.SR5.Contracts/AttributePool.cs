@@ -25,15 +25,15 @@ namespace Sau.Raylan.SR5.Contracts
 
         public AttributePool()
         {
-            _limits.Add(LimitType.Physical, new Limit()
-            {
-                Name = "Physical",
-                Value = () => (int)Math.Ceiling((double)((_attributes[AttributeType.Strength].Value * 2) + _attributes[AttributeType.Body].Value + _attributes[AttributeType.Reaction].Value) / 3)
-            });
             _limits.Add(LimitType.Mental, new Limit()
             {
                 Name = "Mental",
                 Value = () => (int)Math.Ceiling((double)((_attributes[AttributeType.Logic].Value * 2) + _attributes[AttributeType.Intuition].Value + _attributes[AttributeType.Willpower].Value) / 3)
+            });
+            _limits.Add(LimitType.Physical, new Limit()
+            {
+                Name = "Physical",
+                Value = () => (int)Math.Ceiling((double)((_attributes[AttributeType.Strength].Value * 2) + _attributes[AttributeType.Body].Value + _attributes[AttributeType.Reaction].Value) / 3)
             });
             _limits.Add(LimitType.Social, new Limit()
             {
@@ -66,7 +66,7 @@ namespace Sau.Raylan.SR5.Contracts
 
         public string LimitDisplay(LimitType type)
         {
-            throw new System.NotImplementedException();
+            return _limits[type].Display;
         }
 
         private class Attribute
@@ -80,7 +80,7 @@ namespace Sau.Raylan.SR5.Contracts
         {
             public Func<int> Value { get; set; }
             public string Name { get; set; }
-            public string Display { get { return string.Format("[{0} ({1})]", Name, Value); } }
+            public string Display { get { return string.Format("[{0} ({1})]", Name, Value()); } }
         }
     }
 }

@@ -38,5 +38,23 @@ namespace Sau.Raylan.SR5.Contracts.Tests
                 Assert.AreEqual(12, results);
             }
         }
+
+        [TestClass]
+        public class Display
+        {
+            [TestMethod]
+            public void GivenSkillValue_DisplayProperly()
+            {
+                // arrange
+                var actual = new SkillPool();
+
+                // act
+                actual[SkillType.UnarmedCombat] = 12;
+                var results = actual.Display(SkillType.UnarmedCombat);
+
+                // assert
+                Assert.AreEqual("Unarmed Combat (12)", results);
+            }
+        }
     }
 }

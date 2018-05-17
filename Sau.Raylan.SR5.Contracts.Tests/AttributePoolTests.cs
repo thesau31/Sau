@@ -10,7 +10,7 @@ namespace Sau.Raylan.SR5.Contracts.Tests
         public class Ctor
         {
             [TestMethod]
-            public void GivenEmptyConstructor_ThenAttributePoolInitializedCorrectly()
+            public void GivenEmptyConstructor_ThenInitializeCorrectly()
             {
                 // arrange & act
                 var results = new AttributePool();
@@ -27,6 +27,10 @@ namespace Sau.Raylan.SR5.Contracts.Tests
                 Assert.IsNotNull(results[AttributeType.Edge]);
                 Assert.IsNotNull(results[AttributeType.Essence]);
                 Assert.IsNotNull(results[AttributeType.Magic]);
+
+                Assert.IsNotNull(results.LimitValue(LimitType.Mental));
+                Assert.IsNotNull(results.LimitValue(LimitType.Physical));
+                Assert.IsNotNull(results.LimitValue(LimitType.Social));
             }
         }
 
@@ -66,6 +70,121 @@ namespace Sau.Raylan.SR5.Contracts.Tests
             }
         }
 
-        // todo limit tests
+        [TestClass]
+        public class LimitValue
+        {
+            [TestMethod]
+            public void GivenMentalAttributesAreEvenlyDivisibleByThree_ThenCalcOkAndDoNotRoundUp()
+            {
+                // arrange
+                var actual = new AttributePool();
+                actual[AttributeType.Logic] = 4;
+                actual[AttributeType.Intuition] = 2;
+                actual[AttributeType.Willpower] = 2;
+
+                // act
+                var results = actual.LimitValue(LimitType.Mental);
+
+                // assert
+                Assert.AreEqual(4, results);
+            }
+
+            [TestMethod]
+            public void GivenMentalAttributesAreNotEvenlyDivisibleByThree_ThenCalcOkAndRoundUp()
+            {
+                // arrange
+                var actual = new AttributePool();
+                actual[AttributeType.Logic] = 4;
+                actual[AttributeType.Intuition] = 3;
+                actual[AttributeType.Willpower] = 2;
+
+                // act
+                var results = actual.LimitValue(LimitType.Mental);
+
+                // assert
+                Assert.AreEqual(5, results);
+            }
+
+            [TestMethod]
+            public void GivenPhysicalAttributesAreEvenlyDivisibleByThree_ThenCalcOkAndDoNotRoundUp()
+            {
+                // arrange
+                var actual = new AttributePool();
+                actual[AttributeType.Strength] = 4;
+                actual[AttributeType.Body] = 2;
+                actual[AttributeType.Reaction] = 2;
+
+                // act
+                var results = actual.LimitValue(LimitType.Physical);
+
+                // assert
+                Assert.AreEqual(4, results);
+            }
+
+            [TestMethod]
+            public void GivenPhysicalAttributesAreNotEvenlyDivisibleByThree_ThenCalcOkAndRoundUp()
+            {
+                // arrange
+                var actual = new AttributePool();
+                actual[AttributeType.Strength] = 4;
+                actual[AttributeType.Body] = 3;
+                actual[AttributeType.Reaction] = 2;
+
+                // act
+                var results = actual.LimitValue(LimitType.Physical);
+
+                // assert
+                Assert.AreEqual(5, results);
+            }
+
+            [TestMethod]
+            public void GivenSocialAttributesAreEvenlyDivisibleByThree_ThenCalcOkAndDoNotRoundUp()
+            {
+                // arrange
+                var actual = new AttributePool();
+                actual[AttributeType.Charisma] = 4;
+                actual[AttributeType.Willpower] = 2;
+                actual[AttributeType.Essence] = 2;
+
+                // act
+                var results = actual.LimitValue(LimitType.Social);
+
+                // assert
+                Assert.AreEqual(4, results);
+            }
+
+            [TestMethod]
+            public void GivenSocialAttributesAreNotEvenlyDivisibleByThree_ThenCalcOkAndRoundUp()
+            {
+                // arrange
+                var actual = new AttributePool();
+                actual[AttributeType.Charisma] = 4;
+                actual[AttributeType.Willpower] = 3;
+                actual[AttributeType.Essence] = 2;
+
+                // act
+                var results = actual.LimitValue(LimitType.Social);
+
+                // assert
+                Assert.AreEqual(5, results);
+            }
+        }
+
+        [TestClass]
+        public class LimitDisplay
+        {
+            [TestMethod]
+            public void GivenAttributePool_ThenDisplayLimitProperly()
+            {
+                // arrange
+                var actual = new AttributePool();
+
+                // act
+                var results = actual.LimitDisplay(LimitType.Physical);
+
+                // assert
+                Assert.AreEqual("[Physical (0)]", results);
+            }
+        }
     }
 }
