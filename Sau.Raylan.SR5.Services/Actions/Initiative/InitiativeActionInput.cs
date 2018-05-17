@@ -9,5 +9,6 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
         public int Cost { get; set; }
         public bool IsCostRequired { get; set; }
         public List<AttributeType> AttributesUsed { get; set; }
+        public List<SkillType> SkillsUsed { get; set; }
     }
 }

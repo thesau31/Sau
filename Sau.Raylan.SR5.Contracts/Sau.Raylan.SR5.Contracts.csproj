@@ -42,10 +42,15 @@
   <ItemGroup>
     <Compile Include="AttributePool.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="AttributeType.cs" />
     <Compile Include="Interfaces\IAttributePool.cs" />
     <Compile Include="Interfaces\ICharacter.cs" />
     <Compile Include="Interfaces\IHasAttributes.cs" />
+    <Compile Include="Interfaces\IHasSkills.cs" />
+    <Compile Include="Interfaces\ISkillPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkillPool.cs" />
+    <Compile Include="SkillType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sau.Raylan.SR5\Sau.Raylan.SR5.csproj">

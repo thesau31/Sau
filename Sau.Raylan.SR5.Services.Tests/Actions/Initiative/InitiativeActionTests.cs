@@ -17,17 +17,30 @@ namespace Sau.Raylan.SR5.Services.Tests.Actions.Initiative
         {
             [TestMethod]
             [ExpectedException(typeof(ArgumentNullException))]
-            public void GivenNullCharacter_ThenThrowArgumentNullException()
+            public void GivenNullDiceBag_ThenThrowArgumentNullException()
             {
                 // arrange
+                var actual = new InitiativeAction(new InitiativeActionInput());
 
+                // act
+                var results = actual.Do(null, new Character());
+
+                // assert
+                Assert.Fail("ArgumentNullException should have been thrown.");
             }
 
             [TestMethod]
             [ExpectedException(typeof(ArgumentNullException))]
-            public void GivenNullDiceBag_ThenThrowArgumentNullException()
+            public void GivenNullCharacter_ThenThrowArgumentNullException()
             {
+                // arrange
+                var actual = new InitiativeAction(new InitiativeActionInput());
 
+                // act
+                var results = actual.Do(new DiceBag(), null);
+
+                // assert
+                Assert.Fail("ArgumentNullException should have been thrown.");
             }
 
             [TestMethod]
@@ -36,17 +49,20 @@ namespace Sau.Raylan.SR5.Services.Tests.Actions.Initiative
                 // arrange
                 var input = new InitiativeActionInput()
                 {
-                    AttributesUsed = new List<AttributeType>() { AttributeType.Reaction, AttributeType.Intuition }
+                    AttributesUsed = new List<AttributeType>() { AttributeType.Reaction, AttributeType.Intuition },
+                    SkillsUsed = new List<SkillType>() { SkillType.UnarmedCombat }
                 };
                 var actual = new InitiativeAction(input);
                 var mockBag = new Mock<IDiceBag>(MockBehavior.Strict);
                 var mockAttributePool = new Mock<IAttributePool>(MockBehavior.Strict);
-                var mockSource = new Mock<IHasAttributes>(MockBehavior.Strict);
+                var mockSkillPool = new Mock<ISkillPool>(MockBehavior.Strict);
+                var mockSource = new Mock<ICharacter>(MockBehavior.Strict);
                 const int reaction = 7;
                 const int intuition = 5;
-                var diceResults = new List<int>() { 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6 };
+                const int unarmedCombat = 1;
+                var diceResults = new List<int>() { 1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6, 6 };
 
-                mockBag.Setup(x => x.d6(reaction + intuition))
+                mockBag.Setup(x => x.d6(reaction + intuition + unarmedCombat))
                     .Returns(diceResults);
 
                 mockAttributePool.Setup(x => x[AttributeType.Reaction])
@@ -58,16 +74,21 @@ namespace Sau.Raylan.SR5.Services.Tests.Actions.Initiative
                 mockAttributePool.Setup(x => x.Display(AttributeType.Intuition))
                     .Returns("two");
 
+                mockSkillPool.Setup(x => x[SkillType.UnarmedCombat])
+                    .Returns(unarmedCombat);
+
                 mockSource.Setup(x => x.Attributes)
                     .Returns(mockAttributePool.Object);
-                
+                mockSource.Setup(x => x.Skills)
+                    .Returns(mockSkillPool.Object);
+
                 // act
                 var results = actual.Do(mockBag.Object, mockSource.Object);
 
                 // assert
                 Assert.IsNotNull(results);
-                Assert.AreEqual("one + two", results.RollNotation);
-                Assert.AreEqual(4, results.DiceResults.Hits);
+                Assert.AreEqual("one + two", results.RollNotation); // todo: skill notation
+                Assert.AreEqual(5, results.DiceResults.Hits);
             }
         }
     }

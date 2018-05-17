@@ -8,7 +8,13 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
     {
         private Dictionary<InitiativeActionType, InitiativeActionInput> Inputs = new Dictionary<InitiativeActionType, InitiativeActionInput>()
         {
-            { InitiativeActionType.Block, new InitiativeActionInput() { Name = "Block", Cost = 5, IsCostRequired = true, AttributesUsed = new List<AttributeType>() { AttributeType.Reaction, AttributeType.Intuition } } }
+            { InitiativeActionType.Block, new InitiativeActionInput() {
+                Name = "Block",
+                Cost = 5,
+                IsCostRequired = true,
+                AttributesUsed = new List<AttributeType>() { AttributeType.Reaction, AttributeType.Intuition },
+                SkillsUsed = new List<SkillType>() { SkillType.UnarmedCombat } }
+            }
         };
 
         public InitiativeAction Create(InitiativeActionType actionType)

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using Sau.Raylan.SR5.Contracts;
 using Sau.Raylan.SR5.Contracts.Interfaces;
@@ -13,11 +13,13 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
         public string Name { get; private set; }
         public InitiativeCost InitiativeCost { get; private set; }
         public List<AttributeType> AttributesUsed { get; private set; }
+        public List<SkillType> SkillsUsed { get; private set; }
 
         #region c'tor
         private InitiativeAction()
         {
             AttributesUsed = new List<AttributeType>();
+            SkillsUsed = new List<SkillType>();
         }
 
         internal InitiativeAction(InitiativeActionInput input)
@@ -27,15 +29,19 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
             InitiativeCost = new InitiativeCost() { Cost = input.Cost, IsCostRequired = input.IsCostRequired };
             if (input.AttributesUsed != null)
                 AttributesUsed.AddRange(input.AttributesUsed);
+            if (input.SkillsUsed != null)
+                SkillsUsed.AddRange(input.SkillsUsed);
         }
         #endregion
 
-        public ActionResult Do(IDiceBag bag, IHasAttributes source)
+        public ActionResult Do(IDiceBag bag, ICharacter source)
         {
+            if (bag == null) throw new ArgumentNullException("bag");
+            if (source == null) throw new ArgumentNullException("source");
+
             var times = 0;
             AttributesUsed.ForEach(x => times += source.Attributes[x]);
-
-            // todo: skill(s)
+            SkillsUsed.ForEach(x => times += source.Skills[x]);
 
             var pool = new DicePool(bag, times);
             var results = pool.Roll(); // todo: limits
@@ -44,7 +50,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
             return new ActionResult(rollNotation, results);
         }
 
-        private string buildNotation(IHasAttributes source)
+        private string buildNotation(ICharacter source)
         {
             var str = new StringBuilder();
 
