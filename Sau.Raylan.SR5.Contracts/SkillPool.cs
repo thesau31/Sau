@@ -22,10 +22,16 @@ namespace Sau.Raylan.SR5.Contracts
             }
         }
 
+        public string Display(SkillType type)
+        {
+            return _skills[type].Display;
+        }
+
         private class Skill
         {
             public int Value { get; set; }
-            // todo: notation, associated attribute
+            public string Display { get; set; }
+            // todo: associated attribute
         }
     }
 }

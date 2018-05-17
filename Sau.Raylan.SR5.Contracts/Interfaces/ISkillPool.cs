@@ -3,5 +3,6 @@
     public interface ISkillPool
     {
         int this[SkillType type] { get; set; }
+        string Display(SkillType type);
     }
 }

@@ -76,6 +76,8 @@ namespace Sau.Raylan.SR5.Services.Tests.Actions.Initiative
 
                 mockSkillPool.Setup(x => x[SkillType.UnarmedCombat])
                     .Returns(unarmedCombat);
+                mockSkillPool.Setup(x => x.Display(SkillType.UnarmedCombat))
+                    .Returns("three");
 
                 mockSource.Setup(x => x.Attributes)
                     .Returns(mockAttributePool.Object);
@@ -87,7 +89,7 @@ namespace Sau.Raylan.SR5.Services.Tests.Actions.Initiative
 
                 // assert
                 Assert.IsNotNull(results);
-                Assert.AreEqual("one + two", results.RollNotation); // todo: skill notation
+                Assert.AreEqual("one + two + three", results.RollNotation); // todo: limits, threshold
                 Assert.AreEqual(5, results.DiceResults.Hits);
             }
         }

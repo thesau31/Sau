@@ -61,7 +61,12 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
                 str.Append(source.Attributes.Display(AttributesUsed[i]));
             }
 
-            // todo: roll notation - skills
+            for (int i = 0; i < SkillsUsed.Count; i++)
+            {
+                if (str.Length > 0)
+                    str.Append(" + ");
+                str.Append(source.Skills.Display(SkillsUsed[i]));
+            }
 
             // todo: roll notation - limits
 
