@@ -5,10 +5,10 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Sau.Raylan.SR5.Tests
 {
-    [TestClass]
+    [TestClass, ExcludeFromCodeCoverage]
     public class DicePoolResultsTests
     {
-        [TestClass, ExcludeFromCodeCoverage]
+        [TestClass]
         public class Ctor
         {
             [TestMethod]
