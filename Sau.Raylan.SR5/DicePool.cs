@@ -10,12 +10,10 @@ namespace Sau.Raylan.SR5
         #region c'tor
         public DicePool(IDiceBag diceBag, int numberOfDice)
         {
-            if (diceBag == null)
-                throw new ArgumentNullException("diceBag");
             if (numberOfDice <= 0)
                 throw new ArgumentOutOfRangeException("numberOfDice", "[numberOfDice] must be greater than 0 to create a DicePool.");
 
-            _diceBag = diceBag;
+            _diceBag = diceBag ?? throw new ArgumentNullException("diceBag");
             _numberOfDice = numberOfDice;
         }
         #endregion

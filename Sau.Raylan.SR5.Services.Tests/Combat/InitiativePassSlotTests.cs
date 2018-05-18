@@ -3,6 +3,7 @@ using Moq;
 using Sau.Raylan.SR5.Contracts;
 using Sau.Raylan.SR5.Services.Actions;
 using Sau.Raylan.SR5.Services.Actions.Initiative;
+using Sau.Raylan.SR5.Services.Combat;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;

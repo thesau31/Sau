@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Sau.Raylan.SR5.Services.Combat;
 
 namespace Sau.Raylan.SR5.Services.Tests
 {

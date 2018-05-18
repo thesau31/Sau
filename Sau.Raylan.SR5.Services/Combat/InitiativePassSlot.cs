@@ -2,7 +2,7 @@
 using Sau.Raylan.SR5.Services.Actions.Initiative;
 using System;
 
-namespace Sau.Raylan.SR5.Services
+namespace Sau.Raylan.SR5.Services.Combat
 {
     public class InitiativePassSlot : IComparable<InitiativePassSlot>
     {

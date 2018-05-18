@@ -9,11 +9,8 @@ namespace Sau.Raylan.SR5.Services.Actions
 
         public ActionResult(string rollNotation, DicePoolResults diceResults)
         {
-            if (rollNotation == null) throw new ArgumentNullException("rollNotation");
-            if (diceResults == null) throw new ArgumentNullException("diceResults");
-
-            RollNotation = rollNotation;
-            DiceResults = diceResults;
+            RollNotation = rollNotation ?? throw new ArgumentNullException("rollNotation");
+            DiceResults = diceResults ?? throw new ArgumentNullException("diceResults");
         }
     }
 }

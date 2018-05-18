@@ -73,9 +73,10 @@
     <Compile Include="Actions\Initiative\InitiativeActionFactoryTests.cs" />
     <Compile Include="Actions\Initiative\InitiativeActionTests.cs" />
     <Compile Include="Actions\ActionTests.cs" />
-    <Compile Include="InitiativePassSlotTests.cs" />
+    <Compile Include="Combat\InitiativePassSlotTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="InitiativePassServiceTests.cs" />
+    <Compile Include="Combat\InitiativePassServiceTests.cs" />
+    <Compile Include="Combat\CombatTurnServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sau.Raylan.SR5.Contracts\Sau.Raylan.SR5.Contracts.csproj">

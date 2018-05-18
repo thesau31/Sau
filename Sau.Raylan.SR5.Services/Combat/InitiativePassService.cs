@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Sau.Raylan.SR5.Services
+namespace Sau.Raylan.SR5.Services.Combat
 {
     public class InitiativePassService
     {
         public List<InitiativePassSlot> InitiativeOrder { get; private set; }
 
-        #region c'tor
         public InitiativePassService(IEnumerable<InitiativePassSlot> initiativeOrder)
         {
             if (initiativeOrder == null) throw new ArgumentNullException("initiativeOrder");
@@ -16,7 +15,6 @@ namespace Sau.Raylan.SR5.Services
             InitiativeOrder = initiativeOrder.ToList();
             InitiativeOrder.Sort();
         }
-        #endregion
 
         public InitiativePassSlot Next()
         {
@@ -27,7 +25,5 @@ namespace Sau.Raylan.SR5.Services
 
             return InitiativeOrder[0];
         }
-
-        // todo: reset()
     }
 }
