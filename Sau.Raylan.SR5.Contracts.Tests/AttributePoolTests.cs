@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Sau.Raylan.SR5.Contracts.Tests
@@ -73,6 +74,20 @@ namespace Sau.Raylan.SR5.Contracts.Tests
         [TestClass]
         public class LimitValue
         {
+            [TestMethod]
+            [ExpectedException(typeof(IndexOutOfRangeException))]
+            public void GivenTypeNotPresent_ThenThrowIndexOutOfRangeException()
+            {
+                // arrange
+                var actual = new AttributePool();
+
+                // act
+                var results = actual.LimitValue(LimitType.None);
+
+                // assert
+                Assert.Fail("IndexOutOfRangeException should have been thrown.");
+            }
+
             [TestMethod]
             public void GivenMentalAttributesAreEvenlyDivisibleByThree_ThenCalcOkAndDoNotRoundUp()
             {
@@ -173,6 +188,20 @@ namespace Sau.Raylan.SR5.Contracts.Tests
         [TestClass]
         public class LimitDisplay
         {
+            [TestMethod]
+            [ExpectedException(typeof(IndexOutOfRangeException))]
+            public void GivenTypeNotPresent_ThenThrowIndexOutOfRangeException()
+            {
+                // arrange
+                var actual = new AttributePool();
+
+                // act
+                var results = actual.LimitDisplay(LimitType.None);
+
+                // assert
+                Assert.Fail("IndexOutOfRangeException should have been thrown.");
+            }
+
             [TestMethod]
             public void GivenAttributePool_ThenDisplayLimitProperly()
             {

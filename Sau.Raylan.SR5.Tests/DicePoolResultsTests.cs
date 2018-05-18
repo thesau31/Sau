@@ -99,6 +99,20 @@ namespace Sau.Raylan.SR5.Tests
                 // assert
                 Assert.AreEqual(expected, results);
             }
+
+            [TestMethod]
+            public void GivenHitsLimited_ThenCountProperly()
+            {
+                // arrange
+                const int limit = 5;
+                var actual = new DicePoolResults(new List<int> { 6, 6, 6, 6, 6, 6, 6, 6, 6, 6 }, limit);
+
+                // act
+                var results = actual.Hits;
+
+                // assert
+                Assert.AreEqual(limit, results);
+            }
         }
 
         [TestClass]

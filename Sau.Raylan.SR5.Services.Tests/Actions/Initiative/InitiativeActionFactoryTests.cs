@@ -44,7 +44,7 @@ namespace Sau.Raylan.SR5.Services.Tests.Actions.Initiative
                 Assert.IsTrue(results.AttributesUsed.Contains(AttributeType.Intuition));
                 Assert.AreEqual(1, results.SkillsUsed.Count);
                 Assert.IsTrue(results.SkillsUsed.Contains(SkillType.UnarmedCombat));
-                // todo limits
+                Assert.AreEqual(LimitType.Physical, results.Limit);
             }
         }
     }

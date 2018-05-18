@@ -58,6 +58,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
         {
             var str = new StringBuilder();
 
+            // attribute(s)
             for (int i = 0; i < AttributesUsed.Count; i++)
             {
                 if (i > 0)
@@ -65,6 +66,7 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
                 str.Append(source.Attributes.Display(AttributesUsed[i]));
             }
 
+            // skill(s)
             for (int i = 0; i < SkillsUsed.Count; i++)
             {
                 if (str.Length > 0)
@@ -72,9 +74,11 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
                 str.Append(source.Skills.Display(SkillsUsed[i]));
             }
 
-            // todo: roll notation - limits
+            // limit
+            if (Limit != LimitType.None) str.Append(" " + source.Attributes.LimitDisplay(Limit));
 
             // todo: roll notation - threshold
+            // threshold
 
             return str.ToString();
         }

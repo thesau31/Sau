@@ -27,7 +27,7 @@ namespace Sau.Raylan.SR5
 
         public DicePoolResults Roll(int limitToImpose)
         {
-            return new DicePoolResults(_diceBag.d6(_numberOfDice), -1);
+            return new DicePoolResults(_diceBag.d6(_numberOfDice), limitToImpose);
         }
     }
 }

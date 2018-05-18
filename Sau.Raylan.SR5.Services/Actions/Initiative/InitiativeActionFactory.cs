@@ -13,8 +13,8 @@ namespace Sau.Raylan.SR5.Services.Actions.Initiative
                 Cost = 5,
                 IsCostRequired = true,
                 AttributesUsed = new List<AttributeType>() { AttributeType.Reaction, AttributeType.Intuition },
-                SkillsUsed = new List<SkillType>() { SkillType.UnarmedCombat } }
-            }
+                SkillsUsed = new List<SkillType>() { SkillType.UnarmedCombat },
+                Limit = LimitType.Physical } }
         };
 
         public InitiativeAction Create(InitiativeActionType actionType)
