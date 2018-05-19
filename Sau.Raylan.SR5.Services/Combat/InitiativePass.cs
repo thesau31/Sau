@@ -4,11 +4,13 @@ using System.Linq;
 
 namespace Sau.Raylan.SR5.Services.Combat
 {
-    public class InitiativePassService
+    public class InitiativePass
     {
         public List<InitiativePassSlot> InitiativeOrder { get; private set; }
 
-        public InitiativePassService(IEnumerable<InitiativePassSlot> initiativeOrder)
+
+        // todo: adjust to take an enumerable of characters and generate the initiative pass.
+        public InitiativePass(IEnumerable<InitiativePassSlot> initiativeOrder)
         {
             if (initiativeOrder == null) throw new ArgumentNullException("initiativeOrder");
 

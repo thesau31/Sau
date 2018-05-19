@@ -7,7 +7,7 @@ using Sau.Raylan.SR5.Services.Combat;
 namespace Sau.Raylan.SR5.Services.Tests
 {
     [TestClass, ExcludeFromCodeCoverage]
-    public class InitiativePassServiceTests
+    public class InitiativePassTests
     {
         [TestClass]
         public class Ctor
@@ -17,7 +17,7 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenNullInitiativeOrder_ThrowArgumentNullException()
             {
                 // arrange & act
-                var actual = new InitiativePassService(null);
+                var actual = new InitiativePass(null);
 
                 // assert
                 Assert.Fail("ArgumentNullException should have been thrown.");
@@ -33,7 +33,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var four = new InitiativePassSlot() { HasActed = true, CurrentInitiative = 12 };
 
                 // act
-                var actual = new InitiativePassService(new List<InitiativePassSlot>() { four, two, one, three });
+                var actual = new InitiativePass(new List<InitiativePassSlot>() { four, two, one, three });
 
                 // assert
                 Assert.AreSame(one, actual.InitiativeOrder[0]);
@@ -56,7 +56,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var four = new InitiativePassSlot() { CurrentInitiative = 10, HasActed = true };
                 var five = new InitiativePassSlot() { CurrentInitiative = 8, HasActed = true };
                 var initiativeOrder = new List<InitiativePassSlot>() { one, two, three, four, five };
-                var actual = new InitiativePassService(initiativeOrder);
+                var actual = new InitiativePass(initiativeOrder);
 
                 // act
                 var results = actual.Next();
@@ -75,7 +75,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var four = new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false };
                 var five = new InitiativePassSlot() { CurrentInitiative = 8, HasActed = true };
                 var initiativeOrder = new List<InitiativePassSlot>() { one, two, three, four, five };
-                var actual = new InitiativePassService(initiativeOrder);
+                var actual = new InitiativePass(initiativeOrder);
 
                 // act
                 var results = actual.Next();
@@ -94,7 +94,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var four = new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false };
                 var five = new InitiativePassSlot() { CurrentInitiative = 8, HasActed = false };
                 var initiativeOrder = new List<InitiativePassSlot>() { one, two, three, four, five };
-                var actual = new InitiativePassService(initiativeOrder);
+                var actual = new InitiativePass(initiativeOrder);
 
                 // act
                 var results = actual.Next();

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Sau.Raylan.SR5.Contracts.Tests
 {
-    [TestClass]
+    [TestClass, ExcludeFromCodeCoverage]
     public class SkillPoolTests
     {
         [TestClass]
