@@ -1,4 +1,5 @@
 ﻿using Sau.Raylan.SR5.Contracts;
+using Sau.Raylan.SR5.Contracts.Interfaces;
 using Sau.Raylan.SR5.Services.Actions.Initiative;
 using System;
 
@@ -8,12 +9,12 @@ namespace Sau.Raylan.SR5.Services.Combat
     {
         public int CurrentInitiative { get; set; }
         public bool HasActed { get; set; }
-        public Character Participant { get; set; }
+        public ICharacter Participant { get; set; }
 
         public void PerformAction(IInitiativeAction action, IDiceBag diceBag)
         {
             if (action == null) throw new ArgumentNullException("action");
-            if (diceBag == null) throw new ArgumentNullException("bag");
+            if (diceBag == null) throw new ArgumentNullException("diceBag");
 
             if (CurrentInitiative <= 0)
                 throw new InvalidOperationException("You may not perform an action with 0 initiative.");
@@ -26,6 +27,16 @@ namespace Sau.Raylan.SR5.Services.Combat
                 CurrentInitiative = 0;
 
             action.Do(diceBag, Participant);
+        }
+
+        public int RollInitiative(IDiceBag diceBag)
+        {
+            if (diceBag == null) throw new ArgumentNullException("diceBag");
+
+            return
+                Participant.Attributes[AttributeType.Intuition] +
+                Participant.Attributes[AttributeType.Reaction] +
+                new DicePool(diceBag, Participant.InitiativeDicePool).Roll().Total;
         }
 
         #region IComparable<T>
@@ -41,7 +52,7 @@ namespace Sau.Raylan.SR5.Services.Combat
             }
             else
                 return HasActed.CompareTo(other.HasActed);
-        } 
+        }
         #endregion
     }
 }

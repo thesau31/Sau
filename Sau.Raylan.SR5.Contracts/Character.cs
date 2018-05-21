@@ -7,5 +7,11 @@ namespace Sau.Raylan.SR5.Contracts
         public IAttributePool Attributes { get; set; }
         public ISkillPool Skills { get; set; }
         public int InitiativeDicePool { get { return 1; } }
+
+        public Character()
+        {
+            Attributes = new AttributePool();
+            Skills = new SkillPool();
+        }
     }
 }

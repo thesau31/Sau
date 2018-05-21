@@ -152,6 +152,44 @@ namespace Sau.Raylan.SR5.Services.Tests
         }
 
         [TestClass]
+        public class RollInitiative
+        {
+            [TestMethod]
+            [ExpectedException(typeof(ArgumentNullException))]
+            public void GivenNullDiceBag_ThenThrowArgumentNullException()
+            {
+                // arrange 
+                var actual = new InitiativePassSlot();
+
+                // act
+                var results = actual.RollInitiative(null);
+
+                // assert
+                Assert.Fail("ArgumentNullException should have been thrown.");
+            }
+
+            [TestMethod]
+            public void GivenDiceBagAndNoInitiativeModifiers_ThenRollInitiativeForCharacter()
+            {
+                // arrange
+                var character = new Character();
+                character.Attributes[AttributeType.Intuition] = 4;
+                character.Attributes[AttributeType.Reaction] = 3;
+                var mockDiceBag = new Mock<IDiceBag>(MockBehavior.Strict);
+
+                mockDiceBag.Setup(x => x.d6(1)).Returns(new List<int> { 6 });
+
+                var actual = new InitiativePassSlot() { Participant = character };
+
+                // act
+                var results = actual.RollInitiative(mockDiceBag.Object);
+
+                // assert
+                Assert.AreEqual(13, results);
+            }
+        }
+
+        [TestClass]
         public class CompareTo
         {
             [TestMethod]

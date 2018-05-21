@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sau.Raylan.SR5.Contracts.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,13 +9,20 @@ namespace Sau.Raylan.SR5.Services.Combat
     {
         public List<InitiativePassSlot> InitiativeOrder { get; private set; }
 
-
-        // todo: adjust to take an enumerable of characters and generate the initiative pass.
-        public InitiativePass(IEnumerable<InitiativePassSlot> initiativeOrder)
+        public InitiativePass(IDiceBag diceBag, IEnumerable<ICharacter> participants)
         {
-            if (initiativeOrder == null) throw new ArgumentNullException("initiativeOrder");
+            if (diceBag == null) throw new ArgumentNullException("diceBag");
+            if (participants == null) throw new ArgumentNullException("participants");
 
-            InitiativeOrder = initiativeOrder.ToList();
+            InitiativeOrder = participants.Select(x =>
+                new InitiativePassSlot()
+                {
+                    Participant = x,
+                    HasActed = false
+                }).ToList();
+
+            InitiativeOrder.ForEach(x => x.CurrentInitiative = x.RollInitiative(diceBag));
+
             InitiativeOrder.Sort();
         }
 
