@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace Sau.Raylan.SR5.Services.Combat
 {
-    public class InitiativePass
+    public class InitiativePass : IInitiativePass
     {
         public List<InitiativePassSlot> InitiativeOrder { get; private set; }
 
-        public InitiativePass(IDiceBag diceBag, IEnumerable<ICharacter> participants)
+        public void Setup(IDiceBag diceBag, IEnumerable<ICharacter> participants)
         {
             if (diceBag == null) throw new ArgumentNullException("diceBag");
             if (participants == null) throw new ArgumentNullException("participants");

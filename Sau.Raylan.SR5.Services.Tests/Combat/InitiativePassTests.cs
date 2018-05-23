@@ -1,11 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Sau.Raylan.SR5.Contracts;
+using Sau.Raylan.SR5.Contracts.Interfaces;
+using Sau.Raylan.SR5.Services.Combat;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Sau.Raylan.SR5.Services.Combat;
-using Sau.Raylan.SR5.Contracts.Interfaces;
-using Moq;
-using Sau.Raylan.SR5.Contracts;
 
 namespace Sau.Raylan.SR5.Services.Tests
 {
@@ -13,14 +12,17 @@ namespace Sau.Raylan.SR5.Services.Tests
     public class InitiativePassTests
     {
         [TestClass]
-        public class Ctor
+        public class Setup
         {
             [TestMethod]
             [ExpectedException(typeof(ArgumentNullException))]
             public void GivenNullDiceBag_ThrowArgumentNullException()
             {
-                // arrange & act
-                var actual = new InitiativePass(null, new List<ICharacter>());
+                // arrange
+                var actual = new InitiativePass();
+
+                // act
+                actual.Setup(null, new List<ICharacter>());
 
                 // assert
                 Assert.Fail("ArgumentNullException should have been thrown.");
@@ -30,8 +32,11 @@ namespace Sau.Raylan.SR5.Services.Tests
             [ExpectedException(typeof(ArgumentNullException))]
             public void GivenNullCharacterEnumerable_ThrowArgumentNullException()
             {
-                // arrange & act
-                var actual = new InitiativePass(new DiceBag(), null);
+                // arrange
+                var actual = new InitiativePass();
+
+                // act
+                actual.Setup(new DiceBag(), null);
 
                 // assert
                 Assert.Fail("ArgumentNullException should have been thrown.");
@@ -43,9 +48,10 @@ namespace Sau.Raylan.SR5.Services.Tests
                 // arrange
                 var diceBag = new DiceBag();
                 var characters = new List<Character>() { new Character(), new Character(), new Character(), new Character(), new Character(), new Character(), new Character(), new Character(), new Character(), new Character(), new Character(), new Character() };
+                var actual = new InitiativePass();
 
                 // act
-                var actual = new InitiativePass(diceBag, characters);
+                actual.Setup(diceBag, characters);
 
                 // assert
                 Assert.AreEqual(characters.Count, actual.InitiativeOrder.Count);
@@ -62,8 +68,9 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenEveryoneActed_ThenReturnNull()
             {
                 // arrange
-                var actual = new InitiativePass(new DiceBag(), new List<Character>());
+                var actual = new InitiativePass();
 
+                actual.Setup(new DiceBag(), new List<Character>());
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 5, HasActed = true });
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 15, HasActed = true });
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 17, HasActed = true });
@@ -81,8 +88,9 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenNoOneWhoHasNotActedAlsoHasPositiveInitiative_ThenReturnNull()
             {
                 // arrange
-                var actual = new InitiativePass(new DiceBag(), new List<Character>());
+                var actual = new InitiativePass();
 
+                actual.Setup(new DiceBag(), new List<Character>());
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false });
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 15, HasActed = true });
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 17, HasActed = true });
@@ -100,9 +108,10 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenThereIsSomeoneLeftToAct_ThenReturnTheNextCharacter()
             {
                 // arrange
-                var actual = new InitiativePass(new DiceBag(), new List<Character>());
-
+                var actual = new InitiativePass();
                 var three = new InitiativePassSlot() { CurrentInitiative = 17, HasActed = false };
+
+                actual.Setup(new DiceBag(), new List<Character>());
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false });
                 actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 15, HasActed = false });
                 actual.InitiativeOrder.Add(three);

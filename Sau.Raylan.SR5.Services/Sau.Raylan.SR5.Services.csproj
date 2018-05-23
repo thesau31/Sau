@@ -49,7 +49,9 @@
     <Compile Include="Actions\Initiative\InitiativeCost.cs" />
     <Compile Include="Actions\Initiative\InitiativeActionFactory.cs" />
     <Compile Include="Combat\CombatTurnService.cs" />
+    <Compile Include="Combat\IInitiativePass.cs" />
     <Compile Include="Combat\InitiativePass.cs" />
+    <Compile Include="Combat\InitiativePassFactory.cs" />
     <Compile Include="Combat\InitiativePassSlot.cs" />
     <Compile Include="Actions\IAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

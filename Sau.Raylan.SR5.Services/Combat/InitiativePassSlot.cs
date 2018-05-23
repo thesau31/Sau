@@ -11,7 +11,7 @@ namespace Sau.Raylan.SR5.Services.Combat
         public bool HasActed { get; set; }
         public ICharacter Participant { get; set; }
 
-        public void PerformAction(IInitiativeAction action, IDiceBag diceBag)
+        public void PerformAction(IDiceBag diceBag, IInitiativeAction action)
         {
             if (action == null) throw new ArgumentNullException("action");
             if (diceBag == null) throw new ArgumentNullException("diceBag");

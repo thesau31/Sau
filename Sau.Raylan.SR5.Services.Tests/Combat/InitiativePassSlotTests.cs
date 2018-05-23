@@ -24,7 +24,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var actual = new InitiativePassSlot();
 
                 // act
-                actual.PerformAction(null, new DiceBag());
+                actual.PerformAction(new DiceBag(), null);
 
                 // assert
                 Assert.Fail("ArgumentNullException should have been thrown.");
@@ -39,7 +39,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var actual = new InitiativePassSlot();
 
                 // act
-                actual.PerformAction(mockAction.Object, null);
+                actual.PerformAction(null, mockAction.Object);
 
                 // assert
                 Assert.Fail("ArgumentNullException should have been thrown.");
@@ -54,7 +54,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var actual = new InitiativePassSlot() { CurrentInitiative = 0 };
 
                 // act
-                actual.PerformAction(mockAction.Object, new DiceBag());
+                actual.PerformAction(new DiceBag(), mockAction.Object);
 
                 // assert
                 Assert.Fail("InvalidOperationException should have been thrown.");
@@ -69,7 +69,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var actual = new InitiativePassSlot() { CurrentInitiative = -1 };
 
                 // act
-                actual.PerformAction(mockAction.Object, new DiceBag());
+                actual.PerformAction(new DiceBag(), mockAction.Object);
 
                 // assert
                 Assert.Fail("InvalidOperationException should have been thrown.");
@@ -88,7 +88,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                     .Returns(cost);
 
                 // act
-                actual.PerformAction(mockAction.Object, new DiceBag());
+                actual.PerformAction(new DiceBag(), mockAction.Object);
 
                 // assert
                 Assert.Fail("InvalidOperationException should have been thrown.");
@@ -115,7 +115,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                     .Returns(actionResult);
 
                 // act
-                actual.PerformAction(mockAction.Object, bag);
+                actual.PerformAction(bag, mockAction.Object);
 
                 // assert
                 Assert.AreEqual(0, actual.CurrentInitiative);
@@ -143,7 +143,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                     .Returns(actionResult);
 
                 // act
-                actual.PerformAction(mockAction.Object, bag);
+                actual.PerformAction(bag, mockAction.Object);
 
                 // assert
                 Assert.AreEqual(2, actual.CurrentInitiative);
