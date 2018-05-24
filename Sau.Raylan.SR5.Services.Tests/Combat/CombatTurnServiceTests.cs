@@ -61,33 +61,39 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var characters = new List<ICharacter>();
                 var actual = new CombatTurnService<MockInitiativePass>(bag, characters);
 
+                (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = false;
                 (actual.CurrentInitiativePass as MockInitiativePass).ShouldReturnNext = true;
+                (actual.CurrentInitiativePass as MockInitiativePass).InitiativeOrder = 
+                    new List<InitiativePassSlot>() { new InitiativePassSlot() { HasActed = false, CurrentInitiative = 2 } };
 
                 // act
                 var results = actual.Next();
 
                 // assert
                 Assert.IsNotNull(results);
-                Assert.IsFalse((actual.CurrentInitiativePass as MockInitiativePass).WasSetupCalled);
+                Assert.IsFalse((actual.CurrentInitiativePass as MockInitiativePass).WasResetCalled);
                 Assert.IsTrue((actual.CurrentInitiativePass as MockInitiativePass).WasNextCalled);
             }
 
             [TestMethod]
-            public void GivenPassIsCompletedAndAnotherPassIsNeeded_ThenSetupNextPassAndReturnNextParticipant()
+            public void GivenPassIsCompletedAndAnotherPassIsNeeded_ThenResetPassAndReturnNextParticipant()
             {
                 // arrange
                 var bag = new DiceBag();
                 var characters = new List<ICharacter>();
                 var actual = new CombatTurnService<MockInitiativePass>(bag, characters);
 
+                (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = true;
                 (actual.CurrentInitiativePass as MockInitiativePass).ShouldReturnNext = true;
+                (actual.CurrentInitiativePass as MockInitiativePass).InitiativeOrder = 
+                    new List<InitiativePassSlot>() { new InitiativePassSlot() { HasActed = true, CurrentInitiative = 12 } };
 
                 // act
                 var results = actual.Next();
 
                 // assert
                 Assert.IsNotNull(results);
-                Assert.IsTrue((actual.CurrentInitiativePass as MockInitiativePass).WasSetupCalled);
+                Assert.IsTrue((actual.CurrentInitiativePass as MockInitiativePass).WasResetCalled);
                 Assert.IsTrue((actual.CurrentInitiativePass as MockInitiativePass).WasNextCalled);
             }
 
@@ -99,14 +105,16 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var characters = new List<ICharacter>();
                 var actual = new CombatTurnService<MockInitiativePass>(bag, characters);
 
-                (actual.CurrentInitiativePass as MockInitiativePass).ShouldReturnNext = false;
+                (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = true;
+                (actual.CurrentInitiativePass as MockInitiativePass).InitiativeOrder = 
+                    new List<InitiativePassSlot>() { new InitiativePassSlot() { HasActed = true, CurrentInitiative = 2 } };
 
                 // act
                 var results = actual.Next();
 
                 // assert
                 Assert.IsNull(results);
-                Assert.IsFalse((actual.CurrentInitiativePass as MockInitiativePass).WasSetupCalled);
+                Assert.IsFalse((actual.CurrentInitiativePass as MockInitiativePass).WasResetCalled);
                 Assert.IsFalse((actual.CurrentInitiativePass as MockInitiativePass).WasNextCalled);
             }
         }

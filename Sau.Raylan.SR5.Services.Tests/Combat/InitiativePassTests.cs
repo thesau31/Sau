@@ -12,6 +12,71 @@ namespace Sau.Raylan.SR5.Services.Tests
     public class InitiativePassTests
     {
         [TestClass]
+        public class IsComplete
+        {
+            [TestMethod]
+            public void GivenEveryoneActed_ThenReturnTrue()
+            {
+                // arrange
+                var actual = new InitiativePass();
+
+                actual.Setup(new DiceBag(), new List<Character>());
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 5, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 15, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 17, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 10, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 8, HasActed = true });
+
+                // act
+                var results = actual.IsComplete;
+
+                // assert
+                Assert.IsTrue(results);
+            }
+
+            [TestMethod]
+            public void GivenNoOneWhoHasNotActedAlsoHasPositiveInitiative_ThenReturnTrue()
+            {
+                // arrange
+                var actual = new InitiativePass();
+
+                actual.Setup(new DiceBag(), new List<Character>());
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 15, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 17, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 8, HasActed = true });
+
+                // act
+                var results = actual.IsComplete;
+
+                // assert
+                Assert.IsTrue(results);
+            }
+
+            [TestMethod]
+            public void GivenThereIsSomeoneLeftToAct_ThenReturnFalse()
+            {
+                // arrange
+                var actual = new InitiativePass();
+                var three = new InitiativePassSlot() { CurrentInitiative = 17, HasActed = false };
+
+                actual.Setup(new DiceBag(), new List<Character>());
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 15, HasActed = false });
+                actual.InitiativeOrder.Add(three);
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = false });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 8, HasActed = false });
+
+                // act
+                var results = actual.IsComplete;
+
+                // assert
+                Assert.IsFalse(results);
+            }
+        }
+
+        [TestClass]
         public class Setup
         {
             [TestMethod]
@@ -58,6 +123,23 @@ namespace Sau.Raylan.SR5.Services.Tests
                 Assert.IsTrue(actual.InitiativeOrder.TrueForAll(x => x.HasActed == false));
                 for (int i = 1; i < actual.InitiativeOrder.Count; i++)
                     Assert.IsTrue(actual.InitiativeOrder[i].CurrentInitiative <= actual.InitiativeOrder[i - 1].CurrentInitiative);
+            }
+        }
+
+        [TestClass]
+        public class Reset
+        {
+            [TestMethod]
+            public void GivenResetCalled_ThenResetTheInitiativePass()
+            {
+                // arrange
+                var actual = new InitiativePass();
+
+                // act
+                actual.Reset();
+
+                // assert
+                Assert.Fail();
             }
         }
 

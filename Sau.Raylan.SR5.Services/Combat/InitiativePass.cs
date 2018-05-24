@@ -9,6 +9,9 @@ namespace Sau.Raylan.SR5.Services.Combat
     {
         public List<InitiativePassSlot> InitiativeOrder { get; private set; }
 
+        private readonly Func<InitiativePassSlot, bool> _leftToAct = (x => !x.HasActed && x.CurrentInitiative > 0);
+        public bool IsComplete { get { return InitiativeOrder.Count(_leftToAct) == 0; } }
+
         public void Setup(IDiceBag diceBag, IEnumerable<ICharacter> participants)
         {
             if (diceBag == null) throw new ArgumentNullException("diceBag");
@@ -26,14 +29,15 @@ namespace Sau.Raylan.SR5.Services.Combat
             InitiativeOrder.Sort();
         }
 
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+
         public InitiativePassSlot Next()
         {
             InitiativeOrder.Sort();
-
-            if (InitiativeOrder[0].HasActed || InitiativeOrder[0].CurrentInitiative == 0)
-                return null;
-
-            return InitiativeOrder[0];
+            return InitiativeOrder.FirstOrDefault(_leftToAct);
         }
     }
 }

@@ -7,7 +7,11 @@ namespace Sau.Raylan.SR5.Services.Combat
     {
         List<InitiativePassSlot> InitiativeOrder { get; }
 
+        bool IsComplete { get; }
+
         void Setup(IDiceBag diceBag, IEnumerable<ICharacter> participants);
+
+        void Reset();
 
         InitiativePassSlot Next();
     }
