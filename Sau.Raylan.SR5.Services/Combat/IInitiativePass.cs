@@ -9,6 +9,8 @@ namespace Sau.Raylan.SR5.Services.Combat
 
         bool IsComplete { get; }
 
+        bool NeedsAnotherPass { get; }
+
         void Setup(IDiceBag diceBag, IEnumerable<ICharacter> participants);
 
         void Reset();

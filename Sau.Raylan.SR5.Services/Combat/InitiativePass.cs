@@ -12,6 +12,8 @@ namespace Sau.Raylan.SR5.Services.Combat
         private readonly Func<InitiativePassSlot, bool> _leftToAct = (x => !x.HasActed && x.CurrentInitiative > 0);
         public bool IsComplete { get { return InitiativeOrder.Count(_leftToAct) == 0; } }
 
+        public bool NeedsAnotherPass { get { return InitiativeOrder.Any(x => x.CurrentInitiative > 0); } }
+
         public void Setup(IDiceBag diceBag, IEnumerable<ICharacter> participants)
         {
             if (diceBag == null) throw new ArgumentNullException("diceBag");
@@ -31,7 +33,9 @@ namespace Sau.Raylan.SR5.Services.Combat
 
         public void Reset()
         {
-            throw new NotImplementedException();
+            InitiativeOrder.ForEach(x => x.CurrentInitiative -= 10);
+            InitiativeOrder.ForEach(x => x.HasActed = false);
+            InitiativeOrder = InitiativeOrder.Where(_leftToAct).ToList();
         }
 
         public InitiativePassSlot Next()

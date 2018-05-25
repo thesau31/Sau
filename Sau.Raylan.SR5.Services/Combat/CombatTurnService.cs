@@ -1,7 +1,6 @@
 ﻿using Sau.Raylan.SR5.Contracts.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Sau.Raylan.SR5.Services.Combat
 {
@@ -25,9 +24,7 @@ namespace Sau.Raylan.SR5.Services.Combat
         {
             if (CurrentInitiativePass.IsComplete)
             {
-                CurrentInitiativePass.InitiativeOrder.ForEach(x => x.CurrentInitiative -= 10); // todo: move this to concrete InitiativePass, add "NeedsAnotherPass" property to interface
-
-                if (CurrentInitiativePass.InitiativeOrder.Any(x => x.CurrentInitiative > 0))
+                if (CurrentInitiativePass.NeedsAnotherPass)
                     CurrentInitiativePass.Reset();
                 else
                     return null;

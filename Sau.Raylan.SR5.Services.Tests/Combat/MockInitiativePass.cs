@@ -18,6 +18,8 @@ namespace Sau.Raylan.SR5.Services.Tests.Combat
 
         public bool IsComplete { get; set; }
 
+        public bool NeedsAnotherPass { get; set; }
+
         public void Setup(IDiceBag diceBag, IEnumerable<ICharacter> participants)
         {
             WasSetupCalled = true;

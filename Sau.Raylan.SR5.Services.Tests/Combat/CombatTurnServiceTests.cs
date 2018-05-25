@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sau.Raylan.SR5.Contracts;
 using Sau.Raylan.SR5.Contracts.Interfaces;
 using Sau.Raylan.SR5.Services.Combat;
 using Sau.Raylan.SR5.Services.Tests.Combat;
@@ -63,8 +62,6 @@ namespace Sau.Raylan.SR5.Services.Tests
 
                 (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = false;
                 (actual.CurrentInitiativePass as MockInitiativePass).ShouldReturnNext = true;
-                (actual.CurrentInitiativePass as MockInitiativePass).InitiativeOrder = 
-                    new List<InitiativePassSlot>() { new InitiativePassSlot() { HasActed = false, CurrentInitiative = 2 } };
 
                 // act
                 var results = actual.Next();
@@ -85,8 +82,7 @@ namespace Sau.Raylan.SR5.Services.Tests
 
                 (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = true;
                 (actual.CurrentInitiativePass as MockInitiativePass).ShouldReturnNext = true;
-                (actual.CurrentInitiativePass as MockInitiativePass).InitiativeOrder = 
-                    new List<InitiativePassSlot>() { new InitiativePassSlot() { HasActed = true, CurrentInitiative = 12 } };
+                (actual.CurrentInitiativePass as MockInitiativePass).NeedsAnotherPass = true;
 
                 // act
                 var results = actual.Next();
@@ -106,8 +102,7 @@ namespace Sau.Raylan.SR5.Services.Tests
                 var actual = new CombatTurnService<MockInitiativePass>(bag, characters);
 
                 (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = true;
-                (actual.CurrentInitiativePass as MockInitiativePass).InitiativeOrder = 
-                    new List<InitiativePassSlot>() { new InitiativePassSlot() { HasActed = true, CurrentInitiative = 2 } };
+                (actual.CurrentInitiativePass as MockInitiativePass).NeedsAnotherPass = false;
 
                 // act
                 var results = actual.Next();

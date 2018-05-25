@@ -5,6 +5,7 @@ using Sau.Raylan.SR5.Services.Combat;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Sau.Raylan.SR5.Services.Tests
 {
@@ -77,6 +78,44 @@ namespace Sau.Raylan.SR5.Services.Tests
         }
 
         [TestClass]
+        public class NeedsAnotherPass
+        {
+            [TestMethod]
+            public void GivenNoOneHasPostitiveInitiative_ThenReturnFalse()
+            {
+                // arrange
+                var actual = new InitiativePass();
+
+                actual.Setup(new DiceBag(), new List<Character>());
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = -5, HasActed = true });
+
+                // act
+                var results = actual.NeedsAnotherPass;
+
+                // assert
+                Assert.IsFalse(results);
+            }
+
+            [TestMethod]
+            public void GivenSomeoneHasPositiveInitiative_ThenReturnTrue()
+            {
+                // arrange
+                var actual = new InitiativePass();
+
+                actual.Setup(new DiceBag(), new List<Character>());
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 0, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 5, HasActed = true });
+
+                // act
+                var results = actual.NeedsAnotherPass;
+
+                // assert
+                Assert.IsTrue(results);
+            }
+        }
+
+        [TestClass]
         public class Setup
         {
             [TestMethod]
@@ -133,13 +172,24 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenResetCalled_ThenResetTheInitiativePass()
             {
                 // arrange
+                // arrange
                 var actual = new InitiativePass();
+
+                actual.Setup(new DiceBag(), new List<Character>());
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 5, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 15, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 17, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 10, HasActed = true });
+                actual.InitiativeOrder.Add(new InitiativePassSlot() { CurrentInitiative = 8, HasActed = true });
 
                 // act
                 actual.Reset();
 
                 // assert
-                Assert.Fail();
+                Assert.IsTrue(actual.InitiativeOrder.Count(x => x.CurrentInitiative == 7) == 1);
+                Assert.IsTrue(actual.InitiativeOrder.Count(x => x.CurrentInitiative == 5) == 1);
+                Assert.IsTrue(actual.InitiativeOrder.All(x => x.HasActed == false));
+                Assert.AreEqual(2, actual.InitiativeOrder.Count);
             }
         }
 
