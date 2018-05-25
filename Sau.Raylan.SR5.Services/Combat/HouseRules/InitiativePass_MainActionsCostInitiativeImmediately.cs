@@ -1,18 +1,20 @@
 ﻿using System.Linq;
 
-namespace Sau.Raylan.SR5.Services.Combat
+namespace Sau.Raylan.SR5.Services.Combat.HouseRules
 {
-    public class InitiativePass : BaseInitiativePass
+    public class InitiativePass_MainActionsCostInitiativeImmediately : BaseInitiativePass
     {
         public override InitiativePassSlot Next()
         {
             InitiativeOrder.Sort();
-            return InitiativeOrder.FirstOrDefault(_leftToAct);
+            var slot = InitiativeOrder.FirstOrDefault(_leftToAct);
+            if (slot != null)
+                slot.CurrentInitiative -= 10;
+            return slot;
         }
 
         public override void Reset()
         {
-            InitiativeOrder.ForEach(x => x.CurrentInitiative -= 10);
             InitiativeOrder.ForEach(x => x.HasActed = false);
             InitiativeOrder = InitiativeOrder.Where(_leftToAct).ToList();
         }
