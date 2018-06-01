@@ -49,8 +49,10 @@
     <Compile Include="Actions\Initiative\InitiativeCost.cs" />
     <Compile Include="Actions\Initiative\InitiativeActionFactory.cs" />
     <Compile Include="Combat\BaseInitiativePass.cs" />
+    <Compile Include="Combat\CombatService.cs" />
     <Compile Include="Combat\CombatTurnService.cs" />
     <Compile Include="Combat\HouseRules\InitiativePass_MainActionsCostInitiativeImmediately.cs" />
+    <Compile Include="Combat\ICombatTurnService.cs" />
     <Compile Include="Combat\IInitiativePass.cs" />
     <Compile Include="Combat\InitiativePass.cs" />
     <Compile Include="Combat\InitiativePassFactory.cs" />

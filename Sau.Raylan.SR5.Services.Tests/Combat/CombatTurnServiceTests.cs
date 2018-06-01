@@ -19,33 +19,42 @@ namespace Sau.Raylan.SR5.Services.Tests
             public void GivenNullDiceBag_ThrowArgumentNullException()
             {
                 // arrange & act
-                var results = new CombatTurnService<MockInitiativePass>(null, new List<ICharacter>());
+                var results = new CombatTurnService<MockInitiativePass>(null);
 
                 // assert
                 Assert.Fail("ArgumentNullException should have been thrown.");
             }
 
-            [TestMethod]
-            [ExpectedException(typeof(ArgumentNullException))]
-            public void GivenNullParticipants_ThrowArgumentNullException()
-            {
-                // arrange & act
-                var results = new CombatTurnService<MockInitiativePass>(new DiceBag(), null);
+            //[TestMethod]
+            //[ExpectedException(typeof(ArgumentNullException))]
+            //public void GivenNullParticipants_ThrowArgumentNullException()
+            //{
+            //    // arrange & act
+            //    var results = new CombatTurnService<MockInitiativePass>(new DiceBag(), null);
 
-                // assert
-                Assert.Fail("ArgumentNullException should have been thrown.");
-            }
+            //    // assert
+            //    Assert.Fail("ArgumentNullException should have been thrown.");
+            //}
 
             [TestMethod]
             public void GivenParticipants_CreateCombatTurnService()
             {
                 // arrange & act
                 var characters = new List<ICharacter>();
-                var results = new CombatTurnService<MockInitiativePass>(new DiceBag(), characters);
+                var results = new CombatTurnService<MockInitiativePass>(new DiceBag());
 
                 // assert
-                Assert.AreSame(characters, results.Participants);
-                Assert.IsNotNull(results.CurrentInitiativePass);
+                Assert.IsNull(results.CurrentInitiativePass);
+            }
+        }
+
+        [TestClass]
+        public class Setup
+        {
+            [TestMethod]
+            public void ToDo()
+            {
+                Assert.Fail();
             }
         }
 
@@ -58,8 +67,9 @@ namespace Sau.Raylan.SR5.Services.Tests
                 // arrange
                 var bag = new DiceBag();
                 var characters = new List<ICharacter>();
-                var actual = new CombatTurnService<MockInitiativePass>(bag, characters);
+                var actual = new CombatTurnService<MockInitiativePass>(bag);
 
+                actual.Setup(characters);
                 (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = false;
                 (actual.CurrentInitiativePass as MockInitiativePass).ShouldReturnNext = true;
 
@@ -78,8 +88,9 @@ namespace Sau.Raylan.SR5.Services.Tests
                 // arrange
                 var bag = new DiceBag();
                 var characters = new List<ICharacter>();
-                var actual = new CombatTurnService<MockInitiativePass>(bag, characters);
+                var actual = new CombatTurnService<MockInitiativePass>(bag);
 
+                actual.Setup(characters);
                 (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = true;
                 (actual.CurrentInitiativePass as MockInitiativePass).ShouldReturnNext = true;
                 (actual.CurrentInitiativePass as MockInitiativePass).NeedsAnotherPass = true;
@@ -99,8 +110,9 @@ namespace Sau.Raylan.SR5.Services.Tests
                 // arrange
                 var bag = new DiceBag();
                 var characters = new List<ICharacter>();
-                var actual = new CombatTurnService<MockInitiativePass>(bag, characters);
+                var actual = new CombatTurnService<MockInitiativePass>(bag);
 
+                actual.Setup(characters);
                 (actual.CurrentInitiativePass as MockInitiativePass).IsComplete = true;
                 (actual.CurrentInitiativePass as MockInitiativePass).NeedsAnotherPass = false;
 

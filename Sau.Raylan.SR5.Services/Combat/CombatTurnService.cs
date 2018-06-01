@@ -4,24 +4,31 @@ using System.Collections.Generic;
 
 namespace Sau.Raylan.SR5.Services.Combat
 {
-    public class CombatTurnService<T>
+    public class CombatTurnService<T> : ICombatTurnService
         where T : IInitiativePass, new()
     {
-        public List<ICharacter> Participants { get; private set; }
-        public IInitiativePass CurrentInitiativePass { get; private set; }
+        private readonly IDiceBag _diceBag;
+
+        public T CurrentInitiativePass { get; private set; }
 
         #region c'tor
-        public CombatTurnService(IDiceBag diceBag, List<ICharacter> participants)
+        public CombatTurnService(IDiceBag diceBag)
         {
-            if (diceBag == null) throw new ArgumentNullException();
-            Participants = participants ?? throw new ArgumentNullException();
-
-            CurrentInitiativePass = new InitiativePassFactory(diceBag, participants).Create<T>();
+            _diceBag = diceBag ?? throw new ArgumentNullException("diceBag");
         }
         #endregion
 
+        public void Setup(List<ICharacter> participants)
+        {
+            if (participants == null) throw new ArgumentNullException("participants");
+
+            CurrentInitiativePass = new InitiativePassFactory(_diceBag, participants).Create<T>();
+        }
+
         public InitiativePassSlot Next()
         {
+            if (CurrentInitiativePass == null) throw new InvalidOperationException("You must run Setup before calling Next()");
+
             if (CurrentInitiativePass.IsComplete)
             {
                 if (CurrentInitiativePass.NeedsAnotherPass)
