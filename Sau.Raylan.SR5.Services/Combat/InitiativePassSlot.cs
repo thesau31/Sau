@@ -8,7 +8,7 @@ namespace Sau.Raylan.SR5.Services.Combat
     public class InitiativePassSlot : IComparable<InitiativePassSlot>
     {
         public int CurrentInitiative { get; set; }
-        public bool HasActed { get; set; }
+        public bool HasActed { get; set; }  // todo: this is actually never set to true.
         public ICharacter Participant { get; set; }
 
         public void PerformAction(IDiceBag diceBag, IInitiativeAction action)

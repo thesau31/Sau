@@ -16,7 +16,7 @@ namespace Sau.Raylan.SR5.Services.Tests
         {
             [TestMethod]
             [ExpectedException(typeof(ArgumentNullException))]
-            public void GivenNullDiceBag_ThrowArgumentNullException()
+            public void GivenNullDiceBag_ThenThrowArgumentNullException()
             {
                 // arrange & act
                 var results = new CombatTurnService<MockInitiativePass>(null);
@@ -25,25 +25,15 @@ namespace Sau.Raylan.SR5.Services.Tests
                 Assert.Fail("ArgumentNullException should have been thrown.");
             }
 
-            //[TestMethod]
-            //[ExpectedException(typeof(ArgumentNullException))]
-            //public void GivenNullParticipants_ThrowArgumentNullException()
-            //{
-            //    // arrange & act
-            //    var results = new CombatTurnService<MockInitiativePass>(new DiceBag(), null);
-
-            //    // assert
-            //    Assert.Fail("ArgumentNullException should have been thrown.");
-            //}
-
             [TestMethod]
-            public void GivenParticipants_CreateCombatTurnService()
+            public void GivenDiceBag_ThenCreateCombatTurnService()
             {
                 // arrange & act
                 var characters = new List<ICharacter>();
                 var results = new CombatTurnService<MockInitiativePass>(new DiceBag());
 
                 // assert
+                Assert.IsNotNull(results);
                 Assert.IsNull(results.CurrentInitiativePass);
             }
         }
@@ -52,9 +42,33 @@ namespace Sau.Raylan.SR5.Services.Tests
         public class Setup
         {
             [TestMethod]
-            public void ToDo()
+            [ExpectedException(typeof(ArgumentNullException))]
+            public void GivenNullParticipants_ThenThrowArgumentNullException()
             {
-                Assert.Fail();
+                // arrange
+                var actual = new CombatTurnService<MockInitiativePass>(new DiceBag());
+
+                // act
+                actual.Setup(null);
+
+                // assert
+                Assert.Fail("ArgumentNullException should have been thrown.");
+            }
+
+            [TestMethod]
+            public void GivenParticipants_ThenSetupInitiativePass()
+            {
+                // arrange
+                var characters = new List<ICharacter>();
+                var actual = new CombatTurnService<MockInitiativePass>(new DiceBag());
+
+                // act
+                actual.Setup(characters);
+
+                // assert
+                Assert.IsFalse(actual.CurrentInitiativePass.WasNextCalled);
+                Assert.IsFalse(actual.CurrentInitiativePass.WasResetCalled);
+                Assert.IsTrue(actual.CurrentInitiativePass.WasSetupCalled);
             }
         }
 
